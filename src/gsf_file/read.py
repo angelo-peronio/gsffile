@@ -35,21 +35,21 @@ def read_gsf(file_name):
     
     #fix known metadata types from .gsf file specs
     #first the mandatory ones...
-    metadata['XRes'] = np.int(metadata['XRes'])
-    metadata['YRes'] = np.int(metadata['YRes'])
+    metadata['XRes'] = int(metadata['XRes'])
+    metadata['YRes'] = int(metadata['YRes'])
     
     #now check for the optional ones
     if 'XReal' in metadata:
-        metadata['XReal'] = np.float(metadata['XReal'])
+        metadata['XReal'] = float(metadata['XReal'])
     
     if 'YReal' in metadata:
-        metadata['YReal'] = np.float(metadata['YReal'])
+        metadata['YReal'] = float(metadata['YReal'])
                 
     if 'XOffset' in metadata:
-        metadata['XOffset'] = np.float(metadata['XOffset'])
+        metadata['XOffset'] = float(metadata['XOffset'])
     
     if 'YOffset' in metadata:
-        metadata['YOffset'] = np.float(metadata['YOffset'])
+        metadata['YOffset'] = float(metadata['YOffset'])
     
     data = np.frombuffer(gsfFile.read(),dtype='float32').reshape(metadata['YRes'],metadata['XRes'])
     
