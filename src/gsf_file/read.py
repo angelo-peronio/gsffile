@@ -1,4 +1,7 @@
-def gsf_read(file_name):
+import numpy as np
+
+
+def read_gsf(file_name):
     '''Read a Gwyddion Simple Field 1.0 file format
     http://gwyddion.net/documentation/user-guide-en/gsf.html
     

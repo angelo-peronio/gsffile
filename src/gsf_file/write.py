@@ -1,4 +1,4 @@
-def gsf_write(data, file_name, metadata={}):
+def write_gsf(data, file_name, metadata={}):
     '''Write a 2D array to a Gwyddion Simple Field 1.0 file format
     http://gwyddion.net/documentation/user-guide-en/gsf.html
     
