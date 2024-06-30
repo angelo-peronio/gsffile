@@ -13,9 +13,15 @@ def test_wrong_extension(tmp_path):
         write_gsf(data, tmp_path / "test.wrong_extension")
 
 
-def test_ndim(tmp_path):
+not_allowed_shapes = [(2, 3, 4), (2, 2, 1), (1, 2, 2), (1, 1, 1, 1)]
+
+
+@pytest.mark.parametrize(
+    "shape", not_allowed_shapes, ids=lambda shape: f"shape {shape}"
+)
+def test_wrong_ndim(tmp_path, shape):
     """Test wrong ndim --> ☠️."""
-    data = np.zeros((3, 3, 3), dtype=np.float32)
+    data = np.zeros(shape, dtype=np.float32)
     with pytest.raises(ValueError, match=r".* at most 2-dimensional data.*"):
         write_gsf(data, tmp_path / "test.gsf")
 

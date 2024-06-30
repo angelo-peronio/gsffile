@@ -16,9 +16,9 @@
     - [ ] Test multi-byte character in metadata
     - [x] Strip whitespace from metadata
     - [ ] Check Unix newline
-    - [ ] Check nul character in header
+    - [ ] Check NUL and = character in header. Validate functions.
     - [ ] Check no infinities. Allow NaNs?
-    - [ ] Test not allowed shapes
+    - [x] Test not allowed shapes
     - [ ] Sort metadata?
     - [ ] Peruse specs
 - [ ] Docs
