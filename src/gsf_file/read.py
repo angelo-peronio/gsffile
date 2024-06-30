@@ -57,7 +57,7 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
         if file.read(1) != b"":
             raise ValueError(f"Unexpected additional data found at the end of {path}")
 
-    # Do not duplicate information already present in data.shape .
+    # Do not duplicate information already present in data.shape.
     del metadata["XRes"]
     del metadata["YRes"]
 

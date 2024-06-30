@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .format import NUL, gsf_dtype, gsf_magic_line, gsf_padding_lenght
+from .format import NUL, gsf_dtype, gsf_magic_line, gsf_order, gsf_padding_lenght
 
 
 def write_gsf(
@@ -17,7 +17,8 @@ def write_gsf(
     Parameters
     ----------
         data
-            A 0-, 1-, or 2-dimensional array of float32.
+            A 2-dimensional array of float32. 0- and 1-dimensional arrays
+            will be reshaped to 2 dimensions.
         path
             path to the output file to be written, with .gsf extension.
         metadata : optional
@@ -29,7 +30,7 @@ def write_gsf(
             If the input parameters are not compatible with the Gwyddion Simple Field
             file format.
     """
-    # Support for 0- and 1-dimensional data.
+    # Support 0- and 1-dimensional data.
     data = np.atleast_2d(data)
 
     if data.ndim >= 3:
@@ -62,4 +63,4 @@ def write_gsf(
     with path.open("wb") as file:
         file.write(bytes(header, "utf-8"))
         file.write(gsf_padding)
-        file.write(data.astype(gsf_dtype).tobytes(order="C"))
+        file.write(data.astype(gsf_dtype).tobytes(order=gsf_order))
