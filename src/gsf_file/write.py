@@ -1,5 +1,17 @@
-def write_gsf(data, file_name, metadata={}):
-    """Write a 2D array to a Gwyddion Simple Field 1.0 file format
+"""Write Gwyddion Simple Field files."""
+
+from pathlib import Path
+
+import numpy as np
+
+
+def write_gsf(
+    data: np.typing.NDArray[np.float32],
+    path: Path | str,
+    metadata: dict | None = None,
+):
+    """Write a 2D array to a Gwyddion Simple Field 1.0 file format.
+
     http://gwyddion.net/documentation/user-guide-en/gsf.html
 
     Args:
@@ -7,35 +19,43 @@ def write_gsf(data, file_name, metadata={}):
         data (2darray): an arbitrary sized 2D array of arbitrary numeric type
         metadata (dict): additional metadata to be included in the file
 
-    Returns:
+    Returns
+    -------
         nothing
     """
+    # Support for 0- and 1-dimensional data.
+    data = np.atleast_2d(data)
 
-    XRes = data.shape[0]
-    YRes = data.shape[1]
+    if data.ndim >= 3:
+        raise ValueError(
+            f"data.shape is {data.shape}, but the Gwyddion Simple Field file format "
+            "supports at most 2-dimensional data."
+        )
+    if data.dtype != np.float32:
+        raise ValueError(
+            f"data.dtype is {data.dtype}, but the Gwyddion Simple Field file format "
+            "supports only 32-bit floating point data. "
+            "Convert with data.astype(np.float32)."
+        )
 
-    data = data.astype("float32")
+    path = Path(path)
+    if path.suffix != ".gsf":
+        raise ValueError(
+            "The Gwyddion Simple Field file format uses the .gsf file name extension."
+        )
 
-    if file_name.rpartition(".")[1] == ".":
-        file_name = file_name[0 : file_name.rfind(".")]
+    if metadata is None:
+        metadata = {}
 
-    gsfFile = open(file_name + ".gsf", "wb")
+    header = ""
+    header += "Gwyddion Simple Field 1.0\n"
+    header += f"XRes = {data.shape[1]}\n"
+    header += f"YRes = {data.shape[0]}\n"
+    for key, value in metadata.items():
+        header += f"{key} = {value}\n"
+    padding_lenght = 4 - len(header) % 4
 
-    s = ""
-    s += "Gwyddion Simple Field 1.0" + "\n"
-    s += "XRes = {0:d}".format(XRes) + "\n"
-    s += "YRes = {0:d}".format(YRes) + "\n"
-
-    for i in metadata.keys():
-        try:
-            s += i + " = " + "{0:G}".format(metadata[i]) + "\n"
-        except ValueError:
-            s += i + " = " + str(metadata[i]) + "\n"
-
-    gsfFile.write(bytes(s, "UTF-8"))
-
-    gsfFile.write(b"\x00" * (4 - len(s) % 4))
-
-    gsfFile.write(data.tobytes(None))
-
-    gsfFile.close()
+    with path.open("wb") as file:
+        file.write(bytes(header, "utf-8"))
+        file.write(b"\x00" * padding_lenght)
+        file.write(data.tobytes(None))
