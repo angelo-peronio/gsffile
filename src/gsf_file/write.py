@@ -4,6 +4,8 @@ from pathlib import Path
 
 import numpy as np
 
+from .format import NUL, gsf_dtype, gsf_magic_line, gsf_padding_lenght
+
 
 def write_gsf(
     data: np.typing.NDArray[np.float32],
@@ -50,16 +52,14 @@ def write_gsf(
 
     if metadata is None:
         metadata = {}
+    metadata = {"XRes": data.shape[1], "YRes": data.shape[0]} | metadata
 
-    header = ""
-    header += "Gwyddion Simple Field 1.0\n"
-    header += f"XRes = {data.shape[1]}\n"
-    header += f"YRes = {data.shape[0]}\n"
+    header = gsf_magic_line
     for key, value in metadata.items():
         header += f"{key} = {value}\n"
-    padding_lenght = 4 - len(header) % 4
+    gsf_padding = NUL * gsf_padding_lenght(len(header))
 
     with path.open("wb") as file:
         file.write(bytes(header, "utf-8"))
-        file.write(b"\x00" * padding_lenght)
-        file.write(data.tobytes(None))
+        file.write(gsf_padding)
+        file.write(data.astype(gsf_dtype).tobytes(order="C"))

@@ -15,7 +15,7 @@ def test_roundtrip(tmp_path, shape):
     data_1 = np.zeros(shape, dtype=np.float32)
     path = tmp_path / "test.gsf"
     write_gsf(data_1, path)
-    meta_2, data_2 = read_gsf(str(path))
+    meta_2, data_2 = read_gsf(path)
     expected_data_1 = np.atleast_2d(data_1)
     assert meta_2 == {}
     np.testing.assert_array_equal(data_2, expected_data_1)

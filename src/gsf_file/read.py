@@ -1,68 +1,63 @@
 """Read Gwyddion Simple Field files."""
 
+from contextlib import suppress
+from pathlib import Path
+
 import numpy as np
 
+from .format import (
+    NUL,
+    gsf_dtype,
+    gsf_known_metadata_types,
+    gsf_magic_line,
+    gsf_padding_lenght,
+)
 
-def read_gsf(file_name):
-    """Read a Gwyddion Simple Field 1.0 file format.
 
-    http://gwyddion.net/documentation/user-guide-en/gsf.html
+def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
+    """Read a Gwyddion Simple Field file (.gsf).
 
-    Args:
-        file_name (string): the name of the output (any extension will be replaced)
+    Parameters
+    ----------
+        path
+            Path to the file to be read.
 
     Returns
     -------
-        metadata (dict): additional metadata to be included in the file
-        data (2darray): an arbitrary sized 2D array of arbitrary numeric type
+        metadata
+        data
     """
-    if file_name.rpartition(".")[1] == ".":
-        file_name = file_name[0 : file_name.rfind(".")]
-
-    gsfFile = open(file_name + ".gsf", "rb")
-
+    path = Path(path)
     metadata = {}
 
-    # check if header is OK
-    if gsfFile.readline().decode("UTF-8") != "Gwyddion Simple Field 1.0\n":
-        gsfFile.close()
-        raise ValueError("File has wrong header")
+    with path.open("rb") as file:
+        # Check magic line.
+        if file.readline().decode("utf-8") != gsf_magic_line:
+            raise ValueError(f"GSF magic line not found at the beginning of {path}")
 
-    term = b"00"
-    # read metadata header
-    while term != b"\x00":
-        line_string = gsfFile.readline().decode("UTF-8")
-        metadata[line_string.rpartition(" = ")[0]] = line_string.rpartition("=")[2]
-        term = gsfFile.read(1)
-        gsfFile.seek(-1, 1)
+        # Read metadata.
+        # Peek does not do what you think it does.
+        # https://stackoverflow.com/a/24474743
+        while file.peek(1)[:1] != NUL:
+            key, value = file.readline().decode("utf-8").split("=")
+            metadata[key.strip()] = value.strip()
+        for key, type_ in gsf_known_metadata_types.items():
+            with suppress(KeyError):
+                metadata[key] = type_(metadata[key])
 
-    gsfFile.read(4 - gsfFile.tell() % 4)
+        # Skip NUL padding.
+        header_length = file.tell()
+        file.seek(gsf_padding_lenght(header_length), 1)
 
-    # fix known metadata types from .gsf file specs
-    # first the mandatory ones...
-    metadata["XRes"] = int(metadata["XRes"])
-    metadata["YRes"] = int(metadata["YRes"])
+        # Read data.
+        shape = metadata["YRes"], metadata["XRes"]
+        data_size = 4 * shape[0] * shape[1]
+        data = np.frombuffer(file.read(data_size), dtype=gsf_dtype).reshape(shape)
 
-    # now check for the optional ones
-    if "XReal" in metadata:
-        metadata["XReal"] = float(metadata["XReal"])
+        if file.read(1) != b"":
+            raise ValueError(f"Unexpected additional data found at the end of {path}")
 
-    if "YReal" in metadata:
-        metadata["YReal"] = float(metadata["YReal"])
-
-    if "XOffset" in metadata:
-        metadata["XOffset"] = float(metadata["XOffset"])
-
-    if "YOffset" in metadata:
-        metadata["YOffset"] = float(metadata["YOffset"])
-
-    data = np.frombuffer(gsfFile.read(), dtype="float32").reshape(
-        metadata["YRes"], metadata["XRes"]
-    )
-
-    gsfFile.close()
-
-    # Do not duplicate information already present in data.shape
+    # Do not duplicate information already present in data.shape .
     del metadata["XRes"]
     del metadata["YRes"]
 

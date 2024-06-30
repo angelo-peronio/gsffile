@@ -11,6 +11,16 @@
 - [x] GitHub
 - [x] Ruff
 - [ ] Modernize code
+    - [x] Rework `read_gsf`
+    - [x] Ensure little-endian byte ordering
+    - [ ] Test multi-byte character in metadata
+    - [x] Strip whitespace from metadata
+    - [ ] Check Unix newline
+    - [ ] Check nul character in header
+    - [ ] Check no infinities. Allow NaNs?
+    - [ ] Test not allowed shapes
+    - [ ] Sort metadata?
+    - [ ] Peruse specs
 - [ ] Docs
 - [ ] PyPI
 - [ ] [Shields](https://shields.io/)
@@ -20,3 +30,7 @@
 - [ ] Conda recipe
 - [ ] Advertise
     - Gwyddion mailing list and/or forum
+
+## Notes
+
+- <https://github.com/pytest-dev/pytest/issues/1830#issuecomment-425653756>
