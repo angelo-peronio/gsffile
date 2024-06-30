@@ -10,18 +10,22 @@ def write_gsf(
     path: Path | str,
     metadata: dict | None = None,
 ):
-    """Write a 2D array to a Gwyddion Simple Field 1.0 file format.
+    """Write a NumPy array to a Gwyddion Simple Field file (.gsf).
 
-    http://gwyddion.net/documentation/user-guide-en/gsf.html
+    Parameters
+    ----------
+        data
+            A 0-, 1-, or 2-dimensional array of float32.
+        path
+            path to the output file to be written, with .gsf extension.
+        metadata : optional
+            additional metadata to be included in the output file.
 
-    Args:
-        file_name (string): the name of the output (any extension will be replaced)
-        data (2darray): an arbitrary sized 2D array of arbitrary numeric type
-        metadata (dict): additional metadata to be included in the file
-
-    Returns
-    -------
-        nothing
+    Raises
+    ------
+        ValueError
+            If the input parameters are not compatible with the Gwyddion Simple Field
+            file format.
     """
     # Support for 0- and 1-dimensional data.
     data = np.atleast_2d(data)
