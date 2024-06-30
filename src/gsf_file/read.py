@@ -1,13 +1,18 @@
+"""Read Gwyddion Simple Field files."""
+
 import numpy as np
 
 
 def read_gsf(file_name):
-    """Read a Gwyddion Simple Field 1.0 file format
+    """Read a Gwyddion Simple Field 1.0 file format.
+
     http://gwyddion.net/documentation/user-guide-en/gsf.html
 
     Args:
         file_name (string): the name of the output (any extension will be replaced)
-    Returns:
+
+    Returns
+    -------
         metadata (dict): additional metadata to be included in the file
         data (2darray): an arbitrary sized 2D array of arbitrary numeric type
     """
@@ -19,7 +24,7 @@ def read_gsf(file_name):
     metadata = {}
 
     # check if header is OK
-    if not (gsfFile.readline().decode("UTF-8") == "Gwyddion Simple Field 1.0\n"):
+    if gsfFile.readline().decode("UTF-8") != "Gwyddion Simple Field 1.0\n":
         gsfFile.close()
         raise ValueError("File has wrong header")
 
@@ -56,5 +61,9 @@ def read_gsf(file_name):
     )
 
     gsfFile.close()
+
+    # Do not duplicate information already present in data.shape
+    del metadata["XRes"]
+    del metadata["YRes"]
 
     return metadata, data
