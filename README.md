@@ -13,14 +13,14 @@
 - [ ] Modernize code
     - [x] Rework `read_gsf`
     - [x] Ensure little-endian byte ordering
-    - [ ] Test multi-byte character in metadata
+    - [x] Test multi-byte character in metadata
     - [x] Strip whitespace from metadata
-    - [ ] Check Unix newline
-    - [ ] Check NUL and = character in header. Validate functions.
+    - [x] Check Unix newline
+    - [x] Check NUL and = character in header. Validate functions.
     - [ ] Check no infinities. Allow NaNs?
     - [x] Test not allowed shapes
     - [ ] Sort metadata?
-    - [ ] Peruse specs
+    - [x] Peruse specs
 - [ ] Docs
 - [ ] PyPI
 - [ ] [Shields](https://shields.io/)

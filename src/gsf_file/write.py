@@ -4,7 +4,14 @@ from pathlib import Path
 
 import numpy as np
 
-from .format import NUL, gsf_dtype, gsf_magic_line, gsf_order, gsf_padding_lenght
+from .format import (
+    gsf_dtype,
+    gsf_magic_line,
+    gsf_order,
+    gsf_padding_lenght,
+    null_byte,
+    null_char,
+)
 
 
 def write_gsf(
@@ -53,14 +60,32 @@ def write_gsf(
 
     if metadata is None:
         metadata = {}
+    metadata = {str(key).strip(): str(value).strip() for key, value in metadata.items()}
+    if ("XRes" in metadata) or ("YRes" in metadata):
+        raise ValueError(
+            "Do not specify neither XRes nor YRes in metadata. "
+            "They are derived form data.shape."
+        )
+    for key, value in metadata.items():
+        if ("=" in key) or ("=" in value):
+            raise ValueError(
+                "Equal sign '=' not allowed in metadata. "
+                f"Offending key: {key}, offending value: {value}"
+            )
+        if (null_char in key) or (null_char in value):
+            raise ValueError(
+                "Null character (ASCII code 0) not allowed in metadata. "
+                f"Offending key: {key}, offending value: {value}"
+            )
     metadata = {"XRes": data.shape[1], "YRes": data.shape[0]} | metadata
 
     header = gsf_magic_line
     for key, value in metadata.items():
         header += f"{key} = {value}\n"
-    gsf_padding = NUL * gsf_padding_lenght(len(header))
+    header_bytes = bytes(header, "utf-8")
+    gsf_padding = null_byte * gsf_padding_lenght(len(header_bytes))
 
     with path.open("wb") as file:
-        file.write(bytes(header, "utf-8"))
+        file.write(header_bytes)
         file.write(gsf_padding)
         file.write(data.astype(gsf_dtype).tobytes(order=gsf_order))

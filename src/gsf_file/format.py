@@ -2,7 +2,8 @@
 
 import numpy as np
 
-NUL = b"\x00"
+null_byte = b"\x00"  # bytes
+null_char = null_byte.decode()  # str
 gsf_magic_line = "Gwyddion Simple Field 1.0\n"
 gsf_known_metadata_types = {
     "XRes": int,
@@ -22,5 +23,5 @@ gsf_order = "C"
 
 
 def gsf_padding_lenght(header_length):
-    """Length of the NUL padding between metadata and data."""
+    """Length of the null-byte padding between metadata and data."""
     return 4 - header_length % 4
