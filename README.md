@@ -53,8 +53,13 @@ meta, data = read_gsf("example.gsf")
 - [x] Package name: `gsf_file` or `gsf-file`?
     - <https://discuss.python.org/t/are-there-any-naming-conventions-for-package-names/47746>
     - <https://packaging.python.org/en/latest/specifications/name-normalization/#names-and-normalization>
+    - <https://groups.google.com/g/comp.lang.python/c/Y5zcSR7wn7c>
+    - <https://labdmitriy.github.io/blog/distributions-vs-packages/>
     - Now `gsf-file`, to be re-evalueted before publishing.
-- [ ] PyPI
+    - But the package has an underscore!
+- [ ] Publish
+    - [ ] <https://packaging.python.org/en/latest/guides/using-testpypi/>
+    - [ ] <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>
 - [x] [Shields](https://shields.io/)
 - [x] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
 - [x] Continuous integration
