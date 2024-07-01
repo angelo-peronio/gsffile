@@ -15,21 +15,21 @@ from .format import (
 
 
 def write_gsf(
-    data: np.typing.NDArray[np.float32],
     path: Path | str,
+    data: np.typing.NDArray[np.float32],
     metadata: dict | None = None,
 ):
     """Write a NumPy array to a Gwyddion Simple Field file (.gsf).
 
     Parameters
     ----------
+        path
+            Path to the output file to be written, with .gsf extension.
         data
             A 2-dimensional array of float32. 0- and 1-dimensional arrays
             will be reshaped to 2 dimensions.
-        path
-            path to the output file to be written, with .gsf extension.
         metadata : optional
-            additional metadata to be included in the output file.
+            Additional metadata to be included in the output file.
 
     Raises
     ------

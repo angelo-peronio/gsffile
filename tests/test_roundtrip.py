@@ -23,7 +23,7 @@ def expected_meta(meta):
 def assert_roundtrip_ok(tmp_path, data, meta=None):
     """Assert that what is read is the same that what was written."""
     path = tmp_path / "test.gsf"
-    write_gsf(data, path, meta)
+    write_gsf(path, data, meta)
     meta_2, data_2 = read_gsf(path)
     assert meta_2 == expected_meta(meta)
     np.testing.assert_array_equal(data_2, expected_data(data))

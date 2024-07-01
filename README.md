@@ -45,6 +45,10 @@ meta, data = read_gsf("example.gsf")
     - [ ] Usage
     - [ ] Scripts
     - [ ] Spell check
+- [x] Use the same parameter ordering as `imwrite`
+- [ ] Package name: `gsf_file` or `gsf-file`?
+    - <https://discuss.python.org/t/are-there-any-naming-conventions-for-package-names/47746>
+    - <https://packaging.python.org/en/latest/specifications/name-normalization/#names-and-normalization>
 - [ ] PyPI
 - [ ] [Shields](https://shields.io/)
 - [ ] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
