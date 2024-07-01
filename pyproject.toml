@@ -1,5 +1,5 @@
 [project]
-name = "gsf_file"
+name = "gsf-file"
 version = "0.1.0"
 authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 description = "Read and write Gwyddion Simple Field files"

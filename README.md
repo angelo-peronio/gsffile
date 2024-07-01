@@ -4,7 +4,7 @@
 ![test](https://github.com/angelo-peronio/gsf-file/actions/workflows/test.yaml/badge.svg)
 ![build](https://github.com/angelo-peronio/gsf-file/actions/workflows/build.yaml/badge.svg)
 
-`gsf_file` is a Python library to read and write [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files.
+`gsf-file` is a Python library to read and write [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files.
 
 ## Example
 
@@ -51,6 +51,7 @@ meta, data = read_gsf("example.gsf")
 - [x] Package name: `gsf_file` or `gsf-file`?
     - <https://discuss.python.org/t/are-there-any-naming-conventions-for-package-names/47746>
     - <https://packaging.python.org/en/latest/specifications/name-normalization/#names-and-normalization>
+    - Now `gsf-file`, to be re-evalueted before publishing.
 - [ ] PyPI
 - [ ] [Shields](https://shields.io/)
 - [ ] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
