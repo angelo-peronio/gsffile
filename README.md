@@ -1,6 +1,8 @@
 # Read and write Gwyddion Simple Field files
 
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+![test](https://img.shields.io/github/actions/workflow/status/angelo-peronio/gsf-file/test.yaml)
+![build](https://img.shields.io/github/actions/workflow/status/angelo-peronio/gsf-file/build.yaml)
 
 `gsf_file` is a Python library to read and write [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files.
 
