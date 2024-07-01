@@ -19,7 +19,7 @@ gsf_known_metadata_types = {
 # 32-bit (4-bytes) little-endian floats.
 gsf_dtype = np.dtype("<f4")
 # Row-major order.
-gsf_order = "C"
+gsf_array_order = "C"
 
 
 def gsf_padding_lenght(header_length):

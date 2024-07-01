@@ -5,9 +5,9 @@ from pathlib import Path
 import numpy as np
 
 from .format import (
+    gsf_array_order,
     gsf_dtype,
     gsf_magic_line,
-    gsf_order,
     gsf_padding_lenght,
     null_byte,
     null_char,
@@ -88,4 +88,4 @@ def write_gsf(
     with path.open("wb") as file:
         file.write(header_bytes)
         file.write(gsf_padding)
-        file.write(data.astype(gsf_dtype).tobytes(order=gsf_order))
+        file.write(data.astype(gsf_dtype).tobytes(order=gsf_array_order))

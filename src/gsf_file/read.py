@@ -26,6 +26,13 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     -------
         metadata
         data
+
+    Raises
+    ------
+        ValueError
+            If the file to be read is not a Gwyddion Simple Field.
+        KeyError
+            If required metadata is missing from the file to be read.
     """
     path = Path(path)
     metadata = {}
@@ -33,7 +40,7 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     with path.open("rb") as file:
         # Check magic line.
         if file.readline().decode() != gsf_magic_line:
-            raise ValueError(f"GSF magic line not found at the beginning of {path}")
+            raise ValueError(f"Magic line not found at the beginning of {path}")
 
         # Read metadata.
         # Peek does not do what you think it does.
