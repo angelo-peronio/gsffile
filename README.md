@@ -47,20 +47,23 @@ meta, data = read_gsf("example.gsf")
     - [ ] Usage
     - [ ] Scripts
     - [ ] Spell check
+    - [ ] Readthedocs
+    - [ ] Shield
 - [x] Use the same parameter ordering as `imwrite`
 - [x] Package name: `gsf_file` or `gsf-file`?
     - <https://discuss.python.org/t/are-there-any-naming-conventions-for-package-names/47746>
     - <https://packaging.python.org/en/latest/specifications/name-normalization/#names-and-normalization>
     - Now `gsf-file`, to be re-evalueted before publishing.
 - [ ] PyPI
-- [ ] [Shields](https://shields.io/)
-- [ ] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
-- [ ] Continuous integration
+- [x] [Shields](https://shields.io/)
+- [x] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
+- [x] Continuous integration
+    - [ ] pre-commit <https://learn.scientific-python.org/development/guides/style/>
 - [ ] Auto-versioning
 - [ ] Conda recipe
 - Later
     - [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
     - [ ] xarray integration
-    - [ ] Sort metadata
+    - [x] Sort metadata
     - [ ] Check no infinities. Allow NaNs?
 - [ ] Advertise, e.g. Gwyddion mailing list and/or forum

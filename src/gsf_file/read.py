@@ -25,7 +25,8 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     Returns
     -------
         metadata
-            A dict of metadata.
+            A dict of metadata. The fields XRes and YRes are not included in metadata,
+            since they would be a ducplicate of data.shape.
         data
             A 2-dimensional NumPy array of float32.
 

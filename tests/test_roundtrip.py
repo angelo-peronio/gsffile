@@ -4,20 +4,9 @@ import numpy as np
 import pytest
 
 from gsf_file import read_gsf, write_gsf
+from gsf_file.write import prepare_data, prepare_metadata
 
 rng = np.random.default_rng(seed=1)
-
-
-def expected_data(data):
-    """What data to expect after a read_gsf ∘ write_gsf roundtrip."""  # noqa: D401
-    return np.atleast_2d(data)
-
-
-def expected_meta(meta):
-    """What metadata to expect after a read_gsf ∘ write_gsf roundtrip."""  # noqa: D401
-    if meta is None:
-        return {}
-    return {str(key).strip(): str(value).strip() for key, value in meta.items()}
 
 
 def assert_roundtrip_ok(tmp_path, data, meta=None):
@@ -25,8 +14,11 @@ def assert_roundtrip_ok(tmp_path, data, meta=None):
     path = tmp_path / "test.gsf"
     write_gsf(path, data, meta)
     meta_2, data_2 = read_gsf(path)
-    assert meta_2 == expected_meta(meta)
-    np.testing.assert_array_equal(data_2, expected_data(data))
+    expected_meta = prepare_metadata(meta)
+    assert meta_2 == expected_meta
+    # Check metadata order.
+    assert list[meta_2.keys()] == list[expected_meta.keys()]
+    np.testing.assert_array_equal(data_2, prepare_data(data))
 
 
 allowed_shapes = [(3, 2), (3, 1), (1, 3), (3,), (1,), ()]
@@ -44,9 +36,11 @@ def test_meta(tmp_path):
     data = np.zeros((2, 3), dtype=np.float32)
     meta = {
         "string": "a string",
-        "float": 7.40,
-        "int": 2,
+        "float": np.sqrt(3),
+        "int": -0,
         "  whitespace  ": " ",
-        "non_ascii_meta": "💣",
+        "multi-byte characters": "💣",
+        "ZUnits": "m",
+        "XYUnits": "m",
     }
     assert_roundtrip_ok(tmp_path, data, meta)

@@ -8,6 +8,7 @@ from .format import (
     gsf_array_order,
     gsf_dtype,
     gsf_magic_line,
+    gsf_metadata_order,
     gsf_padding_lenght,
     null_byte,
     null_char,
@@ -29,7 +30,9 @@ def write_gsf(
             A 2-dimensional array of float32. 0- and 1-dimensional arrays
             will be reshaped to 2 dimensions.
         metadata : optional
-            Additional metadata to be included in the output file.
+            Additional metadata to be included in the output file. The optional fields
+            defined by the Gwyddion Simple Field format will be written first, followed
+            by the custom fields defined by the user.
 
     Raises
     ------
@@ -37,9 +40,7 @@ def write_gsf(
             If the input parameters are not compatible with the Gwyddion Simple Field
             file format.
     """
-    # Support 0- and 1-dimensional data.
-    data = np.atleast_2d(data)
-
+    data = prepare_data(data)
     if data.ndim >= 3:  # noqa: PLR2004
         msg = (
             f"data.shape is {data.shape}, but the Gwyddion Simple Field file format "
@@ -59,9 +60,7 @@ def write_gsf(
         msg = "The Gwyddion Simple Field file format uses the .gsf file name extension."
         raise ValueError(msg)
 
-    if metadata is None:
-        metadata = {}
-    metadata = {str(key).strip(): str(value).strip() for key, value in metadata.items()}
+    metadata = prepare_metadata(metadata)
     if ("XRes" in metadata) or ("YRes" in metadata):
         msg = (
             "Do not specify neither XRes nor YRes in metadata. "
@@ -93,3 +92,19 @@ def write_gsf(
         file.write(header_bytes)
         file.write(gsf_padding)
         file.write(data.astype(gsf_dtype).tobytes(order=gsf_array_order))
+
+
+def prepare_data(data):
+    """Reshape 0- and 1-dimensional arrays to 2 diemnsions."""
+    return np.atleast_2d(data)
+
+
+def prepare_metadata(metadata):
+    """Sort, convert to string, and strip whitespace from the metadata."""
+    if metadata is None:
+        metadata = {}
+    metadata = dict(
+        sorted(metadata.items(), key=lambda item: gsf_metadata_order(item[0]))
+    )
+    metadata = {str(key).strip(): str(value).strip() for key, value in metadata.items()}
+    return metadata  # noqa: RET504
