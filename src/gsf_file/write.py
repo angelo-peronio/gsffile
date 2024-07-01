@@ -40,43 +40,47 @@ def write_gsf(
     # Support 0- and 1-dimensional data.
     data = np.atleast_2d(data)
 
-    if data.ndim >= 3:
-        raise ValueError(
+    if data.ndim >= 3:  # noqa: PLR2004
+        msg = (
             f"data.shape is {data.shape}, but the Gwyddion Simple Field file format "
             "supports at most 2-dimensional data."
         )
+        raise ValueError(msg)
     if data.dtype != np.float32:
-        raise ValueError(
+        msg = (
             f"data.dtype is {data.dtype}, but the Gwyddion Simple Field file format "
             "supports only 32-bit floating point data. "
             "Convert with data.astype(np.float32)."
         )
+        raise ValueError(msg)
 
     path = Path(path)
     if path.suffix != ".gsf":
-        raise ValueError(
-            "The Gwyddion Simple Field file format uses the .gsf file name extension."
-        )
+        msg = "The Gwyddion Simple Field file format uses the .gsf file name extension."
+        raise ValueError(msg)
 
     if metadata is None:
         metadata = {}
     metadata = {str(key).strip(): str(value).strip() for key, value in metadata.items()}
     if ("XRes" in metadata) or ("YRes" in metadata):
-        raise ValueError(
+        msg = (
             "Do not specify neither XRes nor YRes in metadata. "
             "They are derived form data.shape."
         )
+        raise ValueError(msg)
     for key, value in metadata.items():
         if ("=" in key) or ("=" in value):
-            raise ValueError(
+            msg = (
                 "Equal sign '=' not allowed in metadata. "
                 f"Offending key: {key}, offending value: {value}"
             )
+            raise ValueError(msg)
         if (null_char in key) or (null_char in value):
-            raise ValueError(
+            msg = (
                 "Null character (ASCII code 0) not allowed in metadata. "
                 f"Offending key: {key}, offending value: {value}"
             )
+            raise ValueError(msg)
     metadata = {"XRes": data.shape[1], "YRes": data.shape[0]} | metadata
 
     header = gsf_magic_line

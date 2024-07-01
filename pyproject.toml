@@ -21,7 +21,7 @@ classifiers = [
 # <https://scientific-python.org/specs/spec-0000/>
 requires-python = ">= 3.10"
 dependencies = ["numpy >= 1.24"]
-optional-dependencies = { dev = ["build", "pytest"], test = ["pytest"] }
+optional-dependencies = { dev = ["build", "pytest", "ruff"], test = ["pytest"] }
 
 [project.urls]
 Homepage = "https://github.com/angelo-peronio/gsf_file"
@@ -44,18 +44,12 @@ src = ["src"]
 [tool.ruff.lint]
 extend-select = ["ALL"]
 ignore = [
-    "ANN",     # Type annotations
-    "COM812",  # Trailing comma missing
-    "EM",      # String in error messages
-    "FBT",     # Boolean in functiona arguments
-    "ISC001",  # Conflicts with formatter
-    "PLR09",   # Too many <...>
-    "PLR2004", # Magic value used in comparison
-    "RET504",  # Unnecessary assignment before return statement
-    "TRY003",  # Long message as argument.
+    "ANN",    # Type annotations
+    "COM812", # Trailing comma missing
+    "TRY003", # Long message as argument
 ]
 extend-per-file-ignores."tests/*.py" = [
-    "S101", # Assert
+    "S101", # Assert used
 ]
 
 pydocstyle.convention = "numpy"

@@ -10,26 +10,31 @@
 - [x] Test
 - [x] GitHub
 - [x] Ruff
-- [ ] Modernize code
+- [x] Modernize code
     - [x] Rework `read_gsf`
     - [x] Ensure little-endian byte ordering
     - [x] Test multi-byte character in metadata
     - [x] Strip whitespace from metadata
     - [x] Check Unix newline
     - [x] Check NUL and = character in header. Validate functions.
-    - [ ] Check no infinities. Allow NaNs?
     - [x] Test not allowed shapes
-    - [ ] Sort metadata?
     - [x] Peruse specs
+    - [x] Check Ruff ignores
 - [ ] Docs
+    - [ ] Usage
+    - [ ] Scripts
+    - [ ] Spell check
 - [ ] PyPI
 - [ ] [Shields](https://shields.io/)
 - [ ] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
 - [ ] Continuous integration
 - [ ] Auto-versioning
 - [ ] Conda recipe
-- [ ] Advertise
-    - Gwyddion mailing list and/or forum
+- Later
+    - [ ] xarray integration
+    - [ ] Sort metadata
+    - [ ] Check no infinities. Allow NaNs?
+- [ ] Advertise, e.g. Gwyddion mailing list and/or forum
 
 ## Notes
 

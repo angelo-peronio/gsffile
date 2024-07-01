@@ -25,7 +25,9 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     Returns
     -------
         metadata
+            A dict of metadata.
         data
+            A 2-dimensional NumPy array of float32.
 
     Raises
     ------
@@ -40,7 +42,8 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     with path.open("rb") as file:
         # Check magic line.
         if file.readline().decode() != gsf_magic_line:
-            raise ValueError(f"Magic line not found at the beginning of {path}")
+            msg = f"Magic line not found at the beginning of {path}"
+            raise ValueError(msg)
 
         # Read metadata.
         # Peek does not do what you think it does.
@@ -62,7 +65,8 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
         data = np.frombuffer(file.read(data_size), dtype=gsf_dtype).reshape(shape)
 
         if file.read(1) != b"":
-            raise ValueError(f"Unexpected additional data found at the end of {path}")
+            msg = f"Unexpected additional data found at the end of {path}"
+            raise ValueError(msg)
 
     # Do not duplicate information already present in data.shape.
     del metadata["XRes"]
