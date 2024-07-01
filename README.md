@@ -4,6 +4,27 @@
 
 `gsf_file` is a Python library to read and write [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files.
 
+## Example
+
+```python
+from gsf_file import read_gsf, write_gsf
+import numpy as np
+
+# The Gwyddion Simple Field format supports only 32-bit floating point data.
+data = np.eye((100, 100), dtype=np.float32)
+# Optional metadata.
+meta = {
+    "XReal": 5e-05,
+    "YReal": 5e-05,
+    "XYUnits": "m",
+    "ZUnits": "V",
+    "CustomKey": 33,
+    }
+write_gsf(data, "example.gsf", meta)
+
+meta, data = read_gsf("example.gsf")
+```
+
 ## Roadmap
 
 - [x] Package
@@ -31,11 +52,8 @@
 - [ ] Auto-versioning
 - [ ] Conda recipe
 - Later
+    - [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
     - [ ] xarray integration
     - [ ] Sort metadata
     - [ ] Check no infinities. Allow NaNs?
 - [ ] Advertise, e.g. Gwyddion mailing list and/or forum
-
-## Notes
-
-- <https://github.com/pytest-dev/pytest/issues/1830#issuecomment-425653756>

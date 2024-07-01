@@ -51,5 +51,4 @@ ignore = [
 extend-per-file-ignores."tests/*.py" = [
     "S101", # Assert used
 ]
-
 pydocstyle.convention = "numpy"
