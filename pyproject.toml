@@ -1,6 +1,6 @@
 [project]
 name = "gsf-file"
-version = "0.1.0"
+dynamic = ["version"]
 authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 description = "Read and write Gwyddion Simple Field files"
 readme = "README.md"
@@ -29,11 +29,12 @@ Issues = "https://github.com/angelo-peronio/gsf-file/issues"
 "Format specification" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
-[tool.hatch.build.targets.sdist]
-only-packages = true
+[tool.hatch]
+build.targets.sdist.only-packages = true
+version.source = "vcs"
 
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]

@@ -7,7 +7,10 @@ and avoiding instrument or application specific fields
 (though it can optionally bear them).
 """
 
+from importlib.metadata import version
+
 from .read import read_gsf
 from .write import write_gsf
 
+__version__ = version("gsf-file")
 __all__ = ["read_gsf", "write_gsf"]
