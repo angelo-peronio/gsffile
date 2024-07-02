@@ -30,9 +30,9 @@ optional-dependencies = { dev = [
 ] }
 
 [project.urls]
-Homepage = "https://github.com/angelo-peronio/gsf-file"
+Source = "https://github.com/angelo-peronio/gsf-file"
 Issues = "https://github.com/angelo-peronio/gsf-file/issues"
-"Format specification" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
+"The format" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
 
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
