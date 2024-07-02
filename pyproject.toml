@@ -24,8 +24,8 @@ dependencies = ["numpy >= 1.24"]
 optional-dependencies = { dev = ["build", "pytest", "ruff"], test = ["pytest"] }
 
 [project.urls]
-Homepage = "https://github.com/angelo-peronio/gsf_file"
-Issues = "https://github.com/angelo-peronio/gsf_file/issues"
+Homepage = "https://github.com/angelo-peronio/gsf-file"
+Issues = "https://github.com/angelo-peronio/gsf-file/issues"
 "Format specification" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
 
 [build-system]
