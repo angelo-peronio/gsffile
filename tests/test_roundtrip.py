@@ -52,3 +52,11 @@ def test_non_finite(tmp_path):
     """Test roundtrip for inf and NaN."""
     data = np.array([[np.inf, -np.inf], [np.nan, -0.0]], dtype=np.float32)
     assert_roundtrip_ok(tmp_path, data)
+
+
+def test_path_as_str(tmp_path):
+    """Test passing a str as path."""
+    data = np.zeros((2, 3), dtype=np.float32)
+    path = tmp_path / "test.gsf"
+    write_gsf(str(path), data)
+    _ = read_gsf(str(path))
