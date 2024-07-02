@@ -28,7 +28,7 @@ def write_gsf(
             Path to the output file to be written, with .gsf extension.
         data
             A 2-dimensional array of float32. 0- and 1-dimensional arrays
-            will be reshaped to 2 dimensions.
+            will be reshaped to 2 dimensions. Inf and NaN are supported.
         metadata : optional
             Additional metadata to be included in the output file. The optional fields
             defined by the Gwyddion Simple Field format will be written first, followed

@@ -26,7 +26,10 @@ def test_missing_XRes(tmp_path):  # noqa: N802
 def test_additional_data(tmp_path):
     """Test additional data at the end of the file."""
     content = (
-        "Gwyddion Simple Field 1.0\nXRes = 1\nYRes = 1\n\x00\x00\x00\x00_¨Ÿ>"
+        "Gwyddion Simple Field 1.0\n"
+        "XRes = 1\n"
+        "YRes = 1\n"
+        "\x00\x00\x00\x00_¨Ÿ>"
         "additional_data"
     )
     path = tmp_path / "test.gsf"

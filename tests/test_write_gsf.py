@@ -13,7 +13,7 @@ def test_wrong_extension(tmp_path):
         write_gsf(tmp_path / "test.wrong_extension", data)
 
 
-not_allowed_shapes = [(2, 3, 4), (2, 2, 1), (1, 2, 2), (1, 1, 1, 1)]
+not_allowed_shapes = [(2, 3, 4), (2, 2, 1), (1, 2, 2), (1, 1, 1, 1), (0, 0, 0)]
 
 
 @pytest.mark.parametrize(

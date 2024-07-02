@@ -21,7 +21,7 @@ def assert_roundtrip_ok(tmp_path, data, meta=None):
     np.testing.assert_array_equal(data_2, prepare_data(data))
 
 
-allowed_shapes = [(3, 2), (3, 1), (1, 3), (3,), (1,), ()]
+allowed_shapes = [(3, 2), (3, 1), (1, 3), (3,), (1,), (0,), (), (0, 0)]
 
 
 @pytest.mark.parametrize("shape", allowed_shapes, ids=lambda shape: f"shape {shape}")
@@ -33,6 +33,7 @@ def test_allowed_shapes(tmp_path, shape):
 
 def test_meta(tmp_path):
     """Test metadata roundtrip."""
+    # Optional fields of non-str type, such as XReal, would fail this test.
     data = np.zeros((2, 3), dtype=np.float32)
     meta = {
         "string": "a string",
@@ -44,3 +45,9 @@ def test_meta(tmp_path):
         "XYUnits": "m",
     }
     assert_roundtrip_ok(tmp_path, data, meta)
+
+
+def test_non_finite(tmp_path):
+    """Test roundtrip for inf and NaN."""
+    data = np.array([[np.inf, -np.inf], [np.nan, -0.0]], dtype=np.float32)
+    assert_roundtrip_ok(tmp_path, data)
