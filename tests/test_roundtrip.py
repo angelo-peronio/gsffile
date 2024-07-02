@@ -1,4 +1,4 @@
-"""Test that what is read is the same that what was written."""
+"""Test that what is read is what we expect, given what was written."""
 
 import numpy as np
 import pytest
@@ -10,15 +10,16 @@ rng = np.random.default_rng(seed=1)
 
 
 def assert_roundtrip_ok(tmp_path, data, meta=None):
-    """Assert that what is read is the same that what was written."""
+    """Assert that what is read is what we expect, given what was written."""
     path = tmp_path / "test.gsf"
     write_gsf(path, data, meta)
-    meta_2, data_2 = read_gsf(path)
+    data_2, meta_2 = read_gsf(path)
+    expected_data = prepare_data(data)
     expected_meta = prepare_metadata(meta)
     assert meta_2 == expected_meta
     # Check metadata order.
     assert list[meta_2.keys()] == list[expected_meta.keys()]
-    np.testing.assert_array_equal(data_2, prepare_data(data))
+    np.testing.assert_array_equal(data_2, expected_data)
 
 
 allowed_shapes = [(3, 2), (3, 1), (1, 3), (3,), (1,), (0,), (), (0, 0)]

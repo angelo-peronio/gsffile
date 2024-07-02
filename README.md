@@ -15,16 +15,16 @@ import numpy as np
 # The Gwyddion Simple Field format supports only 32-bit floating point data.
 data = np.eye((100, 100), dtype=np.float32)
 # Optional metadata.
-meta = {
+metadata = {
     "XReal": 5e-05,
     "YReal": 5e-05,
     "XYUnits": "m",
     "ZUnits": "V",
     "CustomKey": 33,
     }
-write_gsf(data, "example.gsf", meta)
+write_gsf("example.gsf", data, meta)
 
-meta, data = read_gsf("example.gsf")
+data, metadata = read_gsf("example.gsf")
 ```
 
 ## Roadmap
@@ -70,5 +70,5 @@ meta, data = read_gsf("example.gsf")
     - [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
     - [ ] xarray integration
     - [x] Sort metadata
-    - [ ] Check no infinities. Allow NaNs?
+    - [x] Allow infinities and NaNs
 - [ ] Advertise, e.g. Gwyddion mailing list and/or forum

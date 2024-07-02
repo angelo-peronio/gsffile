@@ -14,7 +14,9 @@ from .format import (
 )
 
 
-def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
+def read_gsf(
+    path: Path | str,
+) -> tuple[np.typing.NDArray[np.float32], dict[str, float | str]]:
     """Read a Gwyddion Simple Field file (.gsf).
 
     Parameters
@@ -25,8 +27,9 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     Returns
     -------
         metadata
-            A dict of metadata. The fields XRes and YRes are not included in metadata,
-            since they would be a ducplicate of data.shape.
+            A dict of metadata. The fields XRes and YRes are not included,
+            since they would be a duplicate of data.shape. Custom fields not mentioned
+            in the Gwyddion Simple Field specification are read as strings.
         data
             A 2-dimensional NumPy array of float32.
 
@@ -73,4 +76,4 @@ def read_gsf(path: Path | str) -> tuple[dict, np.typing.NDArray[np.float32]]:
     del metadata["XRes"]
     del metadata["YRes"]
 
-    return metadata, data
+    return data, metadata
