@@ -15,13 +15,19 @@ classifiers = [
     "Operating System :: OS Independent",
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
-    "Private :: Do Not Upload",
 ]
 # Support Python and NumPy versions according to the Scientific Python reccomendation.
 # <https://scientific-python.org/specs/spec-0000/>
 requires-python = ">= 3.10"
 dependencies = ["numpy >= 1.24"]
-optional-dependencies = { dev = ["build", "pytest", "ruff"], test = ["pytest"] }
+optional-dependencies = { dev = [
+    "build",
+    "pytest",
+    "ruff",
+    "twine",
+], test = [
+    "pytest",
+] }
 
 [project.urls]
 Homepage = "https://github.com/angelo-peronio/gsf-file"

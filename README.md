@@ -64,7 +64,7 @@ data, metadata = read_gsf("example.gsf")
 - [x] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
 - [x] Continuous integration
     - [ ] pre-commit <https://learn.scientific-python.org/development/guides/style/>
-- [ ] Auto-versioning
+- [x] Dynamic version
 - [ ] Conda recipe
 - Later
     - [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
