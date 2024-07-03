@@ -26,6 +26,7 @@ jobs:
 
   test:
     name: Test on Python ${{ matrix.python-version }}
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
