@@ -53,16 +53,13 @@ python -c "import gsffile; help(gsffile)"
 
 ## Roadmap
 
-* [ ] CI and publish
-    * <https://packaging.python.org/en/latest/guides/using-testpypi/>
-    * <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>
-    * <https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python>
-    * <https://github.com/hynek/build-and-inspect-python-package>
-    * PyPI shields
+* Publish!
+    [x] Register on PyPI
+    [ ] Make repo public
+    [ ] Tag and push
 * [ ] Conda recipe, shield
-* Later
-    * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
-    * [ ] xarray integration
-    * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/), pre-commit.ci, shield
-    * [ ] Test against Python 3.13 and PyPy
+* [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
+* [ ] xarray integration
+* [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/), pre-commit.ci, shield
+* [ ] Test against Python 3.13 and PyPy
 * [ ] Advertise!
