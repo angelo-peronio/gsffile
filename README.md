@@ -1,6 +1,7 @@
 # Read and write Gwyddion Simple Field files
 
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+![license](https://img.shields.io/github/license/angelo-peronio/gsffile)
 ![test](https://github.com/angelo-peronio/gsffile/actions/workflows/test.yaml/badge.svg)
 ![build](https://github.com/angelo-peronio/gsffile/actions/workflows/build.yaml/badge.svg)
 
@@ -13,7 +14,7 @@ It features type annotations and an extensive test suite.
 
 ## Setup
 
-Install with `pip`
+Install with `pip`:
 
 ```bash
 python -m pip install --upgrade gsffile
@@ -43,7 +44,7 @@ data, metadata = read_gsf("example.gsf")
 
 ## Documentation
 
-`gsffile` is documented via docstrings
+`gsffile` is documented via docstrings:
 
 ```bash
 python -c "import gsffile; help(gsffile)"
@@ -51,22 +52,16 @@ python -c "import gsffile; help(gsffile)"
 
 ## Roadmap
 
-* [ ] Package name: `gsf_file`, `gsf-file` or `gsffile`?
-    * <https://discuss.python.org/t/are-there-any-naming-conventions-for-package-names/47746>
-    * <https://packaging.python.org/en/latest/specifications/name-normalization/#names-and-normalization>
-    * <https://groups.google.com/g/comp.lang.python/c/Y5zcSR7wn7c>
-    * <https://labdmitriy.github.io/blog/distributions-vs-packages/>
-    * Now `gsf-file`, to be re-evalueted before publishing.
-    * But the package has an underscore!
-* [ ] Publish
-    * [ ] <https://packaging.python.org/en/latest/guides/using-testpypi/>
-    * [ ] <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>
-* [x] [Shields](https://shields.io/)
-* [x] [Best practices](https://learn.scientific-python.org/development/guides/packaging-simple/)
-* [x] Continuous integration
-    * [ ] pre-commit <https://learn.scientific-python.org/development/guides/style/>
-* [ ] Conda recipe
+* [ ] CI and publish
+    * <https://packaging.python.org/en/latest/guides/using-testpypi/>
+    * <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>
+    * <https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python>
+    * <https://github.com/hynek/build-and-inspect-python-package>
+    * PyPI shields
+* [ ] Conda recipe, shield
 * Later
     * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
     * [ ] xarray integration
-* [ ] Advertise, e.g. Gwyddion mailing list and/or forum
+    * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/), pre-commit.ci, shield
+    * [ ] Test against Python 3.13 and PyPy
+* [ ] Advertise!
