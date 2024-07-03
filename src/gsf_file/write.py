@@ -95,7 +95,7 @@ def write_gsf(
 
 
 def prepare_data(data):
-    """Reshape 0- and 1-dimensional arrays to 2 diemnsions."""
+    """Reshape 0- and 1-dimensional arrays to 2 dimensions."""
     return np.atleast_2d(data)
 
 
@@ -103,11 +103,11 @@ def prepare_metadata(metadata):
     """Sort, convert to string, and strip whitespace from the metadata."""
     if metadata is None:
         metadata = {}
+    # Put the known metadata first, in their canonical order,
+    # then the custom metadata, in insertion order.
     metadata = dict(
         sorted(
             metadata.items(),
-            # Put the known metadata first, in their canonical order,
-            # then the custom metadata, in insertion order.
             key=lambda item: gsf_known_metadata_order.get(item[0], np.inf),
         )
     )
