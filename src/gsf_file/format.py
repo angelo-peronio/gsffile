@@ -16,6 +16,9 @@ gsf_known_metadata_types = {
     "XYUnits": str,
     "ZUnits": str,
 }
+gsf_known_metadata_order = {
+    key: i for i, key in enumerate(gsf_known_metadata_types, start=1)
+}
 # 32-bit (4-bytes) little-endian floats.
 gsf_dtype = np.dtype("<f4")
 # Row-major order.
@@ -25,17 +28,3 @@ gsf_array_order = "C"
 def gsf_padding_lenght(header_length):
     """Length of the null-byte padding between metadata and data."""
     return 4 - header_length % 4
-
-
-gsf_known_metadata_order = {
-    key: i for i, key in enumerate(gsf_known_metadata_types, start=1)
-}
-
-
-def gsf_metadata_order(key):
-    """Helper to sort the metadata."""  # noqa: D401
-    try:
-        return gsf_known_metadata_order[key]
-    except KeyError:
-        # Custom keys at the end.
-        return np.inf

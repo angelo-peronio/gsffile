@@ -7,8 +7,8 @@ import numpy as np
 from .format import (
     gsf_array_order,
     gsf_dtype,
+    gsf_known_metadata_order,
     gsf_magic_line,
-    gsf_metadata_order,
     gsf_padding_lenght,
     null_byte,
     null_char,
@@ -104,7 +104,12 @@ def prepare_metadata(metadata):
     if metadata is None:
         metadata = {}
     metadata = dict(
-        sorted(metadata.items(), key=lambda item: gsf_metadata_order(item[0]))
+        sorted(
+            metadata.items(),
+            # Put the known metadata first, in their canonical order,
+            # then the custom metadata, in insertion order.
+            key=lambda item: gsf_known_metadata_order.get(item[0], np.inf),
+        )
     )
     metadata = {str(key).strip(): str(value).strip() for key, value in metadata.items()}
     return metadata  # noqa: RET504
