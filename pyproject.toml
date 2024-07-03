@@ -42,6 +42,11 @@ build-backend = "hatchling.build"
 build.targets.sdist.only-packages = true
 version.source = "vcs"
 
+[tool.hatch.version.raw-options]
+# To be able to publish dev versions to TestPyPI.
+# https://github.com/ofek/hatch-vcs/discussions/12
+local_scheme = "no-local-version"
+
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]
 
