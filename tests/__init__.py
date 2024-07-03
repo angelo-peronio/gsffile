@@ -1,1 +1,1 @@
-"""Tests for gsf_file."""
+"""Tests for gsffile."""

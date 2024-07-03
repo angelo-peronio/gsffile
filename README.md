@@ -1,10 +1,10 @@
 # Read and write Gwyddion Simple Field files
 
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-![test](https://github.com/angelo-peronio/gsf-file/actions/workflows/test.yaml/badge.svg)
-![build](https://github.com/angelo-peronio/gsf-file/actions/workflows/build.yaml/badge.svg)
+![test](https://github.com/angelo-peronio/gsffile/actions/workflows/test.yaml/badge.svg)
+![build](https://github.com/angelo-peronio/gsffile/actions/workflows/build.yaml/badge.svg)
 
-`gsf-file` is a Python library to:
+`gsffile` is a Python library to:
 
 * read image and metadata from [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files, and
 * store NumPy arrays in Gwyddion Simple Field files.
@@ -16,13 +16,13 @@ It features type annotations and an extensive test suite.
 Install with `pip`
 
 ```bash
-python -m pip install --upgrade gsf-file
+python -m pip install --upgrade gsffile
 ```
 
 ## Quickstart
 
 ```python
-from gsf_file import read_gsf, write_gsf
+from gsffile import read_gsf, write_gsf
 import numpy as np
 
 # The Gwyddion Simple Field format supports only 32-bit floating point data.
@@ -43,10 +43,10 @@ data, metadata = read_gsf("example.gsf")
 
 ## Documentation
 
-`gsf-file` is documented via docstrings
+`gsffile` is documented via docstrings
 
 ```bash
-python -c "import gsf_file; help(gsf_file)"
+python -c "import gsffile; help(gsffile)"
 ```
 
 ## Roadmap

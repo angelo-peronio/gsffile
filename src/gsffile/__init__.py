@@ -12,5 +12,5 @@ from importlib.metadata import version
 from .read import read_gsf
 from .write import write_gsf
 
-__version__ = version("gsf-file")
+__version__ = version("gsffile")
 __all__ = ["read_gsf", "write_gsf"]

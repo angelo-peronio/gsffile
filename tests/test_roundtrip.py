@@ -2,9 +2,8 @@
 
 import numpy as np
 import pytest
-
-from gsf_file import read_gsf, write_gsf
-from gsf_file.write import prepare_data, prepare_metadata
+from gsffile import read_gsf, write_gsf
+from gsffile.write import prepare_data, prepare_metadata
 
 rng = np.random.default_rng(seed=1)
 

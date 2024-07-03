@@ -1,8 +1,7 @@
 """Test read_gsf."""
 
 import pytest
-
-from gsf_file import read_gsf
+from gsffile import read_gsf
 
 
 def test_missing_magic_line(tmp_path):

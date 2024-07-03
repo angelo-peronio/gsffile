@@ -2,8 +2,7 @@
 
 import numpy as np
 import pytest
-
-from gsf_file.write import write_gsf
+from gsffile.write import write_gsf
 
 
 def test_wrong_extension(tmp_path):

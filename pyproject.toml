@@ -1,5 +1,5 @@
 [project]
-name = "gsf-file"
+name = "gsffile"
 dynamic = ["version"]
 authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 description = "Read and write Gwyddion Simple Field files"
@@ -30,8 +30,8 @@ optional-dependencies = { dev = [
 ] }
 
 [project.urls]
-Source = "https://github.com/angelo-peronio/gsf-file"
-Issues = "https://github.com/angelo-peronio/gsf-file/issues"
+Source = "https://github.com/angelo-peronio/gsffile"
+Issues = "https://github.com/angelo-peronio/gsffile/issues"
 "The format" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
 
 [build-system]
