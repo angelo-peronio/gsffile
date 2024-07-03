@@ -2,8 +2,10 @@
 
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 ![license](https://img.shields.io/github/license/angelo-peronio/gsffile)
+![python](https://img.shields.io/pypi/pyversions/gsffile)
 ![test](https://github.com/angelo-peronio/gsffile/actions/workflows/test.yaml/badge.svg)
 ![build](https://github.com/angelo-peronio/gsffile/actions/workflows/build.yaml/badge.svg)
+![pypI](https://img.shields.io/pypi/v/gsffile)
 
 `gsffile` is a Python library to:
 
