@@ -15,4 +15,5 @@
     "spellright.language": [
         "en"
     ],
+    "git.followTagsWhenSync": true,
 }
