@@ -63,3 +63,5 @@ python -c "import gsffile; help(gsffile)"
 * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/), pre-commit.ci, shield
 * [ ] Test against Python 3.13 and PyPy
 * [ ] Advertise!
+    * [ ] image.sc announcements
+    * [ ] Gwyddion mailing list

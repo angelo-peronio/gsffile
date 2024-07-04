@@ -13,7 +13,7 @@ $ErrorActionPreference = 'Stop'
 $PythonVersion = ""  # Empty string for latest installed version.
 $VenvsRootFolder = "C:\venvs"
 
-if ($Env:VIRTUAL_ENV) { 
+if ($Env:VIRTUAL_ENV) {
     "Active virtual environment detected. Please deactivate it "
     "before trying again. Quitting." | Write-Host
     Exit 1
