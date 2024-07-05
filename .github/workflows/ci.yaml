@@ -39,8 +39,8 @@ jobs:
       matrix:
         python-version: ${{ fromJson(needs.build.outputs.python-versions) }}
         include:
-          - python-version: "pypy3.10"
           - python-version: "3.13"
+          - python-version: "pypy3.10"
     steps:
       # One could test the packaged code instead.
       # https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml

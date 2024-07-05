@@ -12,10 +12,13 @@ repos:
       - id: mixed-line-ending
       - id: name-tests-test
         args: ["--pytest-test-first"]
-      - id: requirements-txt-fixer
       - id: trailing-whitespace
+      - id: check-vcs-permalinks
+      - id: debug-statements
+      - id: fix-byte-order-marker
 
   - repo: https://github.com/asottile/pyupgrade
     rev: "v3.16.0"
     hooks:
       - id: pyupgrade
+        args: [--py310-plus]
