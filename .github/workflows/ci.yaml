@@ -8,9 +8,9 @@ name: ci
 
 on:
   workflow_dispatch:
-  # This is tricky to get right.
-  # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushbranchestagsbranches-ignoretags-ignore
   push:
+    # This is tricky to get right.
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushbranchestagsbranches-ignoretags-ignore
     branches:
       - master
     # Run also on release tags.

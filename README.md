@@ -1,10 +1,10 @@
 # Read and write Gwyddion Simple Field files
 
+[![pypi](https://img.shields.io/pypi/v/gsffile?color=0A7BBC)](https://pypi.org/project/gsffile/)
+[![python](https://img.shields.io/pypi/pyversions/gsffile)](https://pypi.org/project/gsffile/)
+[![license](https://img.shields.io/github/license/angelo-peronio/gsffile?color=2DBA4E)](https://github.com/angelo-peronio/gsffile/blob/master/LICENSE)
+[![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-![license](https://img.shields.io/github/license/angelo-peronio/gsffile)
-![python](https://img.shields.io/pypi/pyversions/gsffile)
-![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)
-![pypi](https://img.shields.io/pypi/v/gsffile)
 
 `gsffile` is a Python library to:
 
@@ -50,15 +50,3 @@ data, metadata = read_gsf("example.gsf")
 ```bash
 python -c "import gsffile; help(gsffile)"
 ```
-
-## How to release
-
-Push a tag named `v[major].[minor].[patch]`.
-
-## Roadmap
-
-* [ ] Conda recipe, shield
-* [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
-* [ ] xarray integration
-* [ ] pre-commit.ci, shield
-* [ ] Test workflow to gate pull requests
