@@ -8,9 +8,14 @@ name: ci
 
 on:
   workflow_dispatch:
+  # This is tricky to get right.
+  # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushbranchestagsbranches-ignoretags-ignore
   push:
     branches:
       - master
+    # Run also on release tags.
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
   FORCE_COLOR: "1" # Make tools pretty.
