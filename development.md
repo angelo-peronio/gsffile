@@ -2,7 +2,11 @@
 
 ## How to release
 
-Push a tag named `v[major].[minor].[patch]`.
+Push a tag named `v[major].[minor].[patch]`. Do not "synchronize changes", GitHub actions does not seem to understand that. Instead:
+
+* push the last commit,
+* tag it,
+* push the tag.
 
 ## Roadmap
 
