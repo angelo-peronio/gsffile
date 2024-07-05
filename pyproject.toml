@@ -8,6 +8,7 @@ keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
+    'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: 3.12',
@@ -16,9 +17,9 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
 ]
-# Support Python and NumPy versions according to the Scientific Python reccomendation.
+# cientific Python reccomendation on Python and NumPy versions to support.
 # <https://scientific-python.org/specs/spec-0000/>
-requires-python = ">= 3.10"
+requires-python = ">= 3.9"
 dependencies = ["numpy >= 1.24"]
 optional-dependencies = { dev = [
     "build",

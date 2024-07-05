@@ -53,6 +53,7 @@ python -c "import gsffile; help(gsffile)"
 
 ## Roadmap
 
+* [x] Test against Python 3.13 and PyPy
 * Publish!
     [x] Register on PyPI
     [ ] Make repo public
@@ -61,7 +62,7 @@ python -c "import gsffile; help(gsffile)"
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
 * [ ] xarray integration
 * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/), pre-commit.ci, shield
-* [ ] Test against Python 3.13 and PyPy
+* [ ] Test workflow to gate pull requests
 * [ ] Advertise!
     * [ ] image.sc announcements
     * [ ] Gwyddion mailing list
