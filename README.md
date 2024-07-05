@@ -4,7 +4,7 @@
 ![license](https://img.shields.io/github/license/angelo-peronio/gsffile)
 ![python](https://img.shields.io/pypi/pyversions/gsffile)
 ![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)
-![pypI](https://img.shields.io/pypi/v/gsffile)
+![pypi](https://img.shields.io/pypi/v/gsffile)
 
 `gsffile` is a Python library to:
 
@@ -51,18 +51,14 @@ data, metadata = read_gsf("example.gsf")
 python -c "import gsffile; help(gsffile)"
 ```
 
+## How to release
+
+Push a tag named `v[major].[minor].[patch]`.
+
 ## Roadmap
 
-* [x] Test against Python 3.13 and PyPy
-* Publish!
-    [x] Register on PyPI
-    [ ] Make repo public
-    [ ] Tag and push
 * [ ] Conda recipe, shield
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
 * [ ] xarray integration
-* [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/), pre-commit.ci, shield
+* [ ] pre-commit.ci, shield
 * [ ] Test workflow to gate pull requests
-* [ ] Advertise!
-    * [ ] image.sc announcements
-    * [ ] Gwyddion mailing list

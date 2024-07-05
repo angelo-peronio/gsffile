@@ -65,7 +65,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     environment:
-      name: testpypi
+      name: TestPyPI
       url: https://test.pypi.org/p/gsffile
     permissions:
       id-token: write # IMPORTANT: mandatory for trusted publishing
@@ -89,7 +89,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     environment:
-      name: pypi
+      name: PyPI
       url: https://pypi.org/p/gsffile
     permissions:
       id-token: write

@@ -1,10 +1,13 @@
 """Test read_gsf."""
 
+from pathlib import Path
+
 import pytest
+
 from gsffile import read_gsf
 
 
-def test_missing_magic_line(tmp_path):
+def test_missing_magic_line(tmp_path: Path):
     """Test missing XRes metadata."""
     content = "Gwyddion Simple Field\nXRes = 1\nYRes = 1\n\x00\x00\x00\x00_¨Ÿ>"
     path = tmp_path / "test.gsf"
@@ -13,7 +16,7 @@ def test_missing_magic_line(tmp_path):
         _ = read_gsf(path)
 
 
-def test_missing_XRes(tmp_path):  # noqa: N802
+def test_missing_XRes(tmp_path: Path):  # noqa: N802
     """Test missing XRes metadata."""
     content = "Gwyddion Simple Field 1.0\nYRes = 1\n\x00\x00\x00\x00_¨Ÿ>"
     path = tmp_path / "test.gsf"
@@ -22,7 +25,7 @@ def test_missing_XRes(tmp_path):  # noqa: N802
         _ = read_gsf(path)
 
 
-def test_additional_data(tmp_path):
+def test_additional_data(tmp_path: Path):
     """Test additional data at the end of the file."""
     content = (
         "Gwyddion Simple Field 1.0\n"
