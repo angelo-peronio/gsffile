@@ -1,10 +1,10 @@
 [project]
 name = "gsffile"
-dynamic = ["version"]
-authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 description = "Read and write Gwyddion Simple Field files"
-readme = "README.md"
+authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
+dynamic = ["version"]
+readme = "README.md"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
@@ -16,20 +16,19 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
 ]
-# cientific Python reccomendation on Python and NumPy versions to support.
+# Scientific Python reccomendation on Python and NumPy versions to support.
 # <https://scientific-python.org/specs/spec-0000/>
 # Upgrade the pyupgrade configuration in .pre-commit.config.yaml accordingly.
 requires-python = ">= 3.10"
 dependencies = ["numpy >= 1.24"]
-optional-dependencies = { dev = [
+optional-dependencies.dev = [
     "build",
-    "pytest",
     "pre-commit",
     "ruff",
     "twine",
-], test = [
-    "pytest",
-] }
+    "gsffile[test]",
+]
+optional-dependencies.test = ["pytest", "pytest-cov"]
 
 [project.urls]
 "Source code" = "https://github.com/angelo-peronio/gsffile"
@@ -45,12 +44,16 @@ build.targets.sdist.only-packages = true
 version.source = "vcs"
 
 [tool.hatch.version.raw-options]
+# Version tag pattern: v[major].[minor].[patch]
+# https://setuptools-scm.readthedocs.io/en/latest/config/#setuptools_scm._config.DEFAULT_TAG_REGEX
+# Single quote --> literal string, https://toml.io/en/v1.0.0#string
+tag_regex = '^(?P<version>v?\d+\.\d+\.\d+)$'
 # To be able to publish dev versions to TestPyPI.
 # https://github.com/ofek/hatch-vcs/discussions/12
 local_scheme = "no-local-version"
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib"]
+addopts = ["--import-mode=importlib", "--cov=gsffile"]
 
 [tool.ruff]
 src = ["src"]

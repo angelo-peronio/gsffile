@@ -11,4 +11,7 @@ Push a tag named `v[major].[minor].[patch]`.
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
 * [ ] `xarray` integration
 * [ ] pre-commit.ci, shield
+* [ ] coveralls or codecov
 * [ ] Test workflow to gate pull requests
+* [ ] Release script
+* [ ] Test installed wheel in CI
