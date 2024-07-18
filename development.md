@@ -6,12 +6,13 @@ Push a tag named `v[major].[minor].[patch]`.
 
 ## Roadmap
 
-* [ ] Conda recipe, shield
+* [x] Code style Ruff shield, see pint
+* [ ] coveralls or codecov <https://learn.scientific-python.org/development/guides/coverage/>
+* [ ] pre-commit.ci, shield
+* [x] Conda recipe, shield
+* [ ] Release script
+* [ ] Test workflow to gate pull requests, see pytest
+* [ ] Test installed wheel in CI
 * [ ] Use properly GitHub Packages, Releases, and Deployments
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
 * [ ] `xarray` integration
-* [ ] pre-commit.ci, shield
-* [ ] coveralls or codecov
-* [ ] Test workflow to gate pull requests
-* [ ] Release script
-* [ ] Test installed wheel in CI

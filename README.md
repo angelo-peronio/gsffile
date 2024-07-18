@@ -1,24 +1,31 @@
 # Read and write Gwyddion Simple Field files
 
-[![pypi](https://img.shields.io/pypi/v/gsffile?color=0A7BBC)](https://pypi.org/project/gsffile/)
+[![pypi](https://img.shields.io/pypi/v/gsffile)](https://pypi.org/project/gsffile/)
+[![conda-forge](https://img.shields.io/conda/vn/conda-forge/gsffile)](https://anaconda.org/conda-forge/gsffile)
 [![python](https://img.shields.io/pypi/pyversions/gsffile)](https://pypi.org/project/gsffile/)
 [![license](https://img.shields.io/github/license/angelo-peronio/gsffile?color=2DBA4E)](https://github.com/angelo-peronio/gsffile/blob/master/LICENSE)
 [![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Ruff2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/format.json)](https://github.com/astral-sh/ruff)
 
 `gsffile` is a Python library to:
 
 * read image and metadata from [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files, and
 * store NumPy arrays in Gwyddion Simple Field files.
 
-It features type annotations and an extensive test suite.
+It features type annotations and an overgrown test suite.
 
 ## Setup
 
-Install with `pip`:
+Install with `pip`
 
 ```bash
 python -m pip install --upgrade gsffile
+```
+
+or with `conda`
+
+```bash
+conda install gsffile
 ```
 
 ## Quickstart
