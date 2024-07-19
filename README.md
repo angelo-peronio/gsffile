@@ -5,7 +5,8 @@
 [![python](https://img.shields.io/pypi/pyversions/gsffile)](https://pypi.org/project/gsffile/)
 [![license](https://img.shields.io/github/license/angelo-peronio/gsffile?color=2DBA4E)](https://github.com/angelo-peronio/gsffile/blob/master/LICENSE)
 [![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml)
-[![Ruff2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/format.json)](https://github.com/astral-sh/ruff)
+[![codecov](https://codecov.io/github/angelo-peronio/gsffile/graph/badge.svg?token=912YQDNKU6)](https://codecov.io/github/angelo-peronio/gsffile)
+[![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/format.json)](https://github.com/astral-sh/ruff)
 
 `gsffile` is a Python library to:
 
