@@ -23,6 +23,7 @@ requires-python = ">= 3.10"
 dependencies = ["numpy >= 1.24"]
 optional-dependencies.dev = [
     "build",
+    "mypy",
     "pre-commit",
     "ruff",
     "twine",
@@ -69,3 +70,9 @@ extend-per-file-ignores."tests/*.py" = [
     "S101", # Assert used
 ]
 pydocstyle.convention = "numpy"
+
+[tool.mypy]
+files = "src"
+# strict = true
+# enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+warn_unreachable = true

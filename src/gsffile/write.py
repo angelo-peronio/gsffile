@@ -99,7 +99,7 @@ def prepare_data(data):
     return np.atleast_2d(data)
 
 
-def prepare_metadata(metadata):
+def prepare_metadata(metadata: dict | None) -> dict:
     """Sort, convert to string, and strip whitespace from the metadata."""
     if metadata is None:
         metadata = {}
