@@ -1,6 +1,7 @@
 """Write Gwyddion Simple Field files."""
 
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -18,8 +19,8 @@ from .format import (
 def write_gsf(
     path: Path | str,
     data: np.typing.NDArray[np.float32],
-    metadata: dict | None = None,
-):
+    metadata: dict[Any, Any] | None = None,
+) -> None:
     """Write a NumPy array to a Gwyddion Simple Field file (.gsf).
 
     Parameters
@@ -94,12 +95,12 @@ def write_gsf(
         file.write(data.astype(gsf_dtype).tobytes(order=gsf_array_order))
 
 
-def prepare_data(data):
+def prepare_data(data: np.typing.NDArray[np.float32]) -> np.typing.NDArray[np.float32]:
     """Reshape 0- and 1-dimensional arrays to 2 dimensions."""
     return np.atleast_2d(data)
 
 
-def prepare_metadata(metadata: dict | None) -> dict:
+def prepare_metadata(metadata: dict[Any, Any] | None) -> dict[str, str]:
     """Sort, convert to string, and strip whitespace from the metadata."""
     if metadata is None:
         metadata = {}

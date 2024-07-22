@@ -7,7 +7,8 @@ Push a tag named `v[major].[minor].[patch]`.
 ## Roadmap
 
 * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/)
-    * [ ] more checks
+    * [ ] mypy?
+    * [ ] [prettier](https://learn.scientific-python.org/development/guides/style/#prettier) for markdown, yaml, toml
     * [ ] ci
     * [ ] shield
 * [ ] ci
@@ -16,5 +17,4 @@ Push a tag named `v[major].[minor].[patch]`.
     * [ ] Use properly GitHub Packages, Releases, and Deployments
 * [ ] `xarray` integration
 * [ ] Release script
-* [ ] [mypy](https://learn.scientific-python.org/development/guides/mypy/)
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`

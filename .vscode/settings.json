@@ -16,4 +16,5 @@
         "en"
     ],
     "git.followTagsWhenSync": true,
+    "python.analysis.typeCheckingMode": "off",
 }

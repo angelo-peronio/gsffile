@@ -2,6 +2,7 @@
 
 from contextlib import suppress
 from pathlib import Path
+from typing import Any, cast
 
 import numpy as np
 
@@ -16,7 +17,7 @@ from .format import (
 
 def read_gsf(
     path: Path | str,
-) -> tuple[np.typing.NDArray[np.float32], dict[str, float | str]]:
+) -> tuple[np.typing.NDArray[np.float32], dict[str, Any]]:
     """Read a Gwyddion Simple Field file (.gsf).
 
     Parameters
@@ -64,7 +65,8 @@ def read_gsf(
         file.seek(gsf_padding_lenght(header_length), 1)
 
         # Read data.
-        shape = metadata["YRes"], metadata["XRes"]
+        # cast is there to persuade mypy.
+        shape = cast(int, metadata["YRes"]), cast(int, metadata["XRes"])
         data_size = gsf_dtype.itemsize * shape[0] * shape[1]
         data = np.frombuffer(file.read(data_size), dtype=gsf_dtype).reshape(shape)
 
