@@ -17,6 +17,5 @@ Use `scripts\Release-Package.ps1`:
 * [ ] ci
     * [ ] Test workflow to gate pull requests / branch protection, see pytest
     * [ ] Test installed wheel in CI
-    * [ ] Use properly GitHub Packages, Releases, and Deployments
 * [ ] `xarray` integration
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
