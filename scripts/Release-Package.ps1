@@ -2,10 +2,10 @@
 # A GitHub action will then build, test, release on PyPi.
 
 # Known bug:
-# will fail if encounters a git tag different form a version tag "v<major>.<minor>.<patch>".
+# will fail if encounters a git tag different form a version tag "v[major].[minor].[patch]".
 
 Param (
-    [Parameter(Mandatory, HelpMessage = "Please provide a version, in the form <major>.<minor>.<patch>.")]
+    [Parameter(Mandatory, HelpMessage = "Please provide a version, in the form [major].[minor].[patch].")]
     [Version]$Version
 )
 
@@ -33,7 +33,7 @@ if ($Dirty) {
 
 $Patch = $Version.Revision
 if ($Patch -ne -1) {
-    throw "Supplied version $Version is not in the form <major>.<minor>.<patch>. Quitting."
+    throw "Supplied version $Version is not in the form [major].[minor].[patch]. Quitting."
 }
 
 # https://stackoverflow.com/a/7261049
