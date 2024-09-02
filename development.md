@@ -8,11 +8,10 @@ Push a tag named `v[major].[minor].[patch]`.
 
 * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/)
     * [ ] mypy?
-    * [ ] [prettier](https://learn.scientific-python.org/development/guides/style/#prettier) for markdown, yaml, toml
     * [ ] ci
     * [ ] shield
 * [ ] ci
-    * [ ] Test workflow to gate pull requests, see pytest
+    * [ ] Test workflow to gate pull requests / branch protection, see pytest
     * [ ] Test installed wheel in CI
     * [ ] Use properly GitHub Packages, Releases, and Deployments
 * [ ] `xarray` integration
