@@ -42,7 +42,7 @@ def write_gsf(
             file format.
     """
     data = prepare_data(data)
-    if data.ndim >= 3:  # noqa: PLR2004
+    if data.ndim > 2:  # noqa: PLR2004
         msg = (
             f"data.shape is {data.shape}, but the Gwyddion Simple Field file format "
             "supports at most 2-dimensional data."
@@ -53,6 +53,12 @@ def write_gsf(
             f"data.dtype is {data.dtype}, but the Gwyddion Simple Field file format "
             "supports only 32-bit floating point data. "
             "Convert with data.astype(np.float32)."
+        )
+        raise ValueError(msg)
+    if data.size == 0:
+        msg = (
+            "The array to be saved has 0 elements. "
+            "The Gwyddion Simple Field file format does not support empty arrays."
         )
         raise ValueError(msg)
 

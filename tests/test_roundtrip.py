@@ -24,7 +24,7 @@ def assert_roundtrip_ok(tmp_path, data, meta=None):
     np.testing.assert_array_equal(data_2, expected_data)
 
 
-allowed_shapes = [(3, 2), (3, 1), (1, 3), (3,), (1,), (0,), (), (0, 0)]
+allowed_shapes = [(3, 2), (3, 1), (1, 3), (3,), (1,), ()]
 
 
 @pytest.mark.parametrize("shape", allowed_shapes, ids=lambda shape: f"shape {shape}")

@@ -15,12 +15,10 @@ def test_wrong_extension(tmp_path: Path):
         write_gsf(tmp_path / "test.wrong_extension", data)
 
 
-not_allowed_shapes = [(2, 3, 4), (2, 2, 1), (1, 2, 2), (1, 1, 1, 1), (0, 0, 0)]
+wrong_ndim_shapes = [(2, 3, 4), (2, 2, 1), (1, 2, 2), (1, 1, 1, 1), (0, 0, 0)]
 
 
-@pytest.mark.parametrize(
-    "shape", not_allowed_shapes, ids=lambda shape: f"shape {shape}"
-)
+@pytest.mark.parametrize("shape", wrong_ndim_shapes, ids=lambda shape: f"shape {shape}")
 def test_wrong_ndim(tmp_path: Path, shape: tuple[int]):
     """Test wrong ndim --> ☠️."""
     data = np.zeros(shape, dtype=np.float32)
@@ -32,6 +30,17 @@ def test_wrong_dtype(tmp_path: Path):
     """Test wrong dtype --> ☠️."""
     data = np.zeros((3, 2), dtype=np.float64)
     with pytest.raises(ValueError, match=r".* only 32-bit floating point data.*"):
+        write_gsf(tmp_path / "test.gsf", data)
+
+
+empty_shapes = [(0,), (0, 0), (3, 0), (0, 3)]
+
+
+@pytest.mark.parametrize("shape", empty_shapes, ids=lambda shape: f"shape {shape}")
+def test_empty_array(tmp_path: Path, shape: tuple[int]):
+    """Test empty array --> ☠️."""
+    data = np.zeros(shape, dtype=np.float32)
+    with pytest.raises(ValueError, match=r".* has 0 elements.*"):
         write_gsf(tmp_path / "test.gsf", data)
 
 
