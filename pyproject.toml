@@ -54,10 +54,17 @@ tag_regex = '^(?P<version>v?\d+\.\d+\.\d+)$'
 local_scheme = "no-local-version"
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib", "--cov=gsffile"]
-
-[tool.ruff]
-src = ["src"]
+addopts = [
+    "-ra",
+    "--cov=gsffile",
+    "--import-mode=importlib",
+    "--strict-config",
+    "--strict-markers",
+]
+filterwarnings = ["error"]
+log_cli_level = "INFO"
+minversion = "7"
+xfail_strict = true
 
 [tool.ruff.lint]
 extend-select = ["ALL"]
