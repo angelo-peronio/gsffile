@@ -37,6 +37,7 @@ import numpy as np
 
 # The Gwyddion Simple Field format supports only 32-bit floating point data.
 data = np.eye((100, 100), dtype=np.float32)
+
 # Optional metadata.
 metadata = {
     "XReal": 5e-05,
@@ -46,7 +47,7 @@ metadata = {
     "CustomKey": 33,
     }
 
-write_gsf("example.gsf", data, meta)
+write_gsf("example.gsf", data, metadata)
 
 data, metadata = read_gsf("example.gsf")
 ```
