@@ -65,6 +65,7 @@ filterwarnings = ["error"]
 log_cli_level = "INFO"
 minversion = "7"
 xfail_strict = true
+testpaths = ["tests"]
 
 [tool.ruff.lint]
 extend-select = ["ALL"]
