@@ -12,7 +12,6 @@ Use `scripts\Release-Package.ps1`:
 
 * [ ] [repo-review](https://learn.scientific-python.org/development/guides/repo-review/?repo=angelo-peronio%2Fgsffile&branch=master)
 * [ ] [pre-commit](https://learn.scientific-python.org/development/guides/style/)
-    * [ ] mypy?
     * [ ] ci
     * [ ] shield
 * [ ] ci

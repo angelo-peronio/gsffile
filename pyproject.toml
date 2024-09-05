@@ -80,7 +80,7 @@ extend-per-file-ignores."tests/*.py" = [
 pydocstyle.convention = "numpy"
 
 [tool.mypy]
-files = "src"
+files = ["src"]
 strict = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 warn_unreachable = true
