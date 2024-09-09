@@ -47,6 +47,9 @@ jobs:
             fail-fast: false
             matrix:
                 python-version: ${{ fromJson(needs.build.outputs.python-versions) }}
+                # Test also on the latest PyPy.
+                # Upgrade the PyPy version after NumPy publishes binary wheels
+                # for the new one, otherwise the CI would take too long.
                 include:
                     - python-version: "pypy3.10"
         steps:

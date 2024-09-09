@@ -5,6 +5,8 @@ authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
 dynamic = ["version"]
 readme = "README.md"
+# Support the next beta Python version as soon has NumPy publishes binary wheels for it,
+# otherwise the CI would take too long.
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
@@ -72,11 +74,10 @@ testpaths = ["tests"]
 [tool.ruff.lint]
 extend-select = ["ALL"]
 ignore = [
-    "ANN",    # Type annotations
     "COM812", # Trailing comma missing
-    "TRY003", # Long message as argument
 ]
 extend-per-file-ignores."tests/*.py" = [
+    "ANN",  # Type annotations
     "S101", # Assert used
 ]
 pydocstyle.convention = "numpy"
