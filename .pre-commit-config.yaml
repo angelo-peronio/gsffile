@@ -10,7 +10,7 @@ repos:
           - id: ruff-format
 
     - repo: https://github.com/rbubley/mirrors-prettier
-      rev: "V3.3.3"
+      rev: "v3.3.3"
       hooks:
           - id: prettier
             types_or: [toml, yaml]
@@ -39,20 +39,6 @@ repos:
           - id: trailing-whitespace
           - id: check-vcs-permalinks
           - id: fix-byte-order-marker
-
-    - repo: https://github.com/pre-commit/pygrep-hooks
-      rev: v1.10.0
-      hooks:
-          - id: python-check-blanket-noqa
-          - id: python-check-blanket-type-ignore
-          - id: python-check-mock-methods
-          - id: python-no-eval
-          - id: python-no-log-warn
-          - id: python-use-type-annotations
-          #   - id: rst-backticks
-          #   - id: rst-directive-colons
-          #   - id: rst-inline-touching-normal
-          - id: text-unicode-replacement-char
 
     - repo: https://github.com/asottile/pyupgrade
       rev: "v3.17.0"
