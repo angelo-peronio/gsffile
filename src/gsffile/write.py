@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import numpy.typing
 
 from .format import (
     gsf_array_order,
