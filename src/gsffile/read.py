@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any, cast
 
 import numpy as np
-import numpy.typing
+from numpy.typing import NDArray
 
 from .format import (
     gsf_dtype,
@@ -18,7 +18,7 @@ from .format import (
 
 def read_gsf(
     path: Path | str,
-) -> tuple[np.typing.NDArray[np.float32], dict[str, Any]]:
+) -> tuple[NDArray[np.float32], dict[str, Any]]:
     """Read a Gwyddion Simple Field file (.gsf).
 
     Parameters

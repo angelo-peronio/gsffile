@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-import numpy.typing
+from numpy.typing import NDArray
 
 from .format import (
     gsf_array_order,
@@ -19,7 +19,7 @@ from .format import (
 
 def write_gsf(
     path: Path | str,
-    data: np.typing.NDArray[np.float32],
+    data: NDArray[np.float32],
     metadata: dict[Any, Any] | None = None,
 ) -> None:
     """Write a NumPy array to a Gwyddion Simple Field file (.gsf).
