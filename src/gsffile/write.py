@@ -3,6 +3,7 @@
 from pathlib import Path
 from typing import Any
 
+import numpy.typing
 import numpy as np
 
 from .format import (

@@ -4,6 +4,7 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Any, cast
 
+import numpy.typing
 import numpy as np
 
 from .format import (
