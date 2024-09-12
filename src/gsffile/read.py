@@ -4,8 +4,8 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Any, cast
 
-import numpy.typing
 import numpy as np
+import numpy.typing
 
 from .format import (
     gsf_dtype,
