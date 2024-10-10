@@ -19,7 +19,7 @@ repos:
       rev: "v1.11.2"
       hooks:
           - id: mypy
-            additional_dependencies: [numpy]
+            additional_dependencies: [nox, numpy]
             # https://stackoverflow.com/a/75447331
             exclude: "tests/.*\\.py"
 
