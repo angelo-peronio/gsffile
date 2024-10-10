@@ -16,4 +16,5 @@ Use `scripts\Release-Package.ps1`:
     * [ ] Test installed wheel in CI
     * [ ] Test against all supported NumPy versions
 * [ ] `xarray` integration
+* [ ] Logging
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`

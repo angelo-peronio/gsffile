@@ -3,11 +3,11 @@
 # * <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>
 # * <https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python>
 # * <https://github.com/hynek/build-and-inspect-python-package>
+# * <https://docs.github.com/en/actions/sharing-automations/avoiding-duplication>
 
 name: ci
 
 on:
-    workflow_dispatch:
     push:
         # This is tricky to get right.
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushbranchestagsbranches-ignoretags-ignore
@@ -16,6 +16,7 @@ on:
         # Run also on release tags.
         tags:
             - "v[0-9]+.[0-9]+.[0-9]+"
+    workflow_dispatch:
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
@@ -48,7 +49,7 @@ jobs:
             matrix:
                 python-version: ${{ fromJson(needs.build.outputs.python-versions) }}
                 # Test also on the latest PyPy.
-                # Upgrade the PyPy version after NumPy publishes binary wheels
+                # Only upgrade the PyPy version after NumPy publishes binary wheels
                 # for the new one, otherwise the CI would take too long.
                 include:
                     - python-version: "pypy3.10"
@@ -56,8 +57,6 @@ jobs:
             # One could test the packaged code instead.
             # https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml
             - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
 
             - name: Setup Python ${{ matrix.python-version }}
               uses: actions/setup-python@v5
@@ -66,7 +65,7 @@ jobs:
                   allow-prereleases: true
 
             - name: Install package
-              run: python -m pip install -e .[test]
+              run: python -m pip install .[test]
 
             - name: Test package
               run: python -m pytest

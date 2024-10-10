@@ -36,7 +36,7 @@ optional-dependencies.dev = [
 optional-dependencies.test = ["pytest", "pytest-cov"]
 
 [project.urls]
-"Source code" = "https://github.com/angelo-peronio/gsffile"
+Repository = "https://github.com/angelo-peronio/gsffile"
 Issues = "https://github.com/angelo-peronio/gsffile/issues"
 "GSF format" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
 
