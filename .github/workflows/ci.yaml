@@ -49,6 +49,11 @@ jobs:
             - name: Checkout source code
               uses: actions/checkout@v4
 
+            - name: Setup uv
+              uses: astral-sh/setup-uv@v3
+              with:
+                  enable-cache: true
+
             - name: Setup nox
               uses: wntrblm/nox@2024.10.09
 
