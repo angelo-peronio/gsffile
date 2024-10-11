@@ -88,3 +88,7 @@ files = ["src"]
 strict = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 warn_unreachable = true
+
+[tool.uv]
+# uv should not cache gsffile.
+reinstall-package = ["gsffile"]
