@@ -1,5 +1,6 @@
 """Read Gwyddion Simple Field files."""
 
+import logging
 from contextlib import suppress
 from pathlib import Path
 from typing import Any, cast
@@ -14,6 +15,8 @@ from .format import (
     gsf_padding_lenght,
     null_byte,
 )
+
+log = logging.getLogger(__name__)
 
 
 def read_gsf(
@@ -44,6 +47,7 @@ def read_gsf(
     """
     path = Path(path)
     metadata = {}
+    log.info("Reading %s", path)
 
     with path.open("rb") as file:
         # Check magic line.
@@ -74,6 +78,9 @@ def read_gsf(
         if file.read(1) != b"":
             msg = f"Unexpected additional data found at the end of {path}"
             raise ValueError(msg)
+
+    log.info("Read image of shape (y, x): %s", data.shape)
+    log.info("Read metadata: %s", metadata)
 
     # Do not duplicate information already present in data.shape.
     del metadata["XRes"]

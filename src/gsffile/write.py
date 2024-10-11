@@ -1,5 +1,6 @@
 """Write Gwyddion Simple Field files."""
 
+import logging
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,8 @@ from .format import (
     null_byte,
     null_char,
 )
+
+log = logging.getLogger(__name__)
 
 
 def write_gsf(
@@ -89,6 +92,7 @@ def write_gsf(
             )
             raise ValueError(msg)
     metadata = {"XRes": data.shape[1], "YRes": data.shape[0]} | metadata
+    log.info("Metadata to be written: %s", metadata)
 
     header = gsf_magic_line
     for key, value in metadata.items():
@@ -96,6 +100,7 @@ def write_gsf(
     header_bytes = bytes(header, "utf-8")
     gsf_padding = null_byte * gsf_padding_lenght(len(header_bytes))
 
+    log.info("Writing %s", path)
     with path.open("wb") as file:
         file.write(header_bytes)
         file.write(gsf_padding)
