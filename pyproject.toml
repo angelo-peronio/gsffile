@@ -5,15 +5,15 @@ authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
 dynamic = ["version"]
 readme = "README.md"
-# Support the next beta Python version as soon has NumPy publishes binary wheels for it,
-# otherwise the CI would take too long.
+# Support the next pre-release Python version only after NumPy has published
+# binary wheels for it, otherwise the CI would take too long.
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12',
-    'Programming Language :: Python :: 3.13',
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Intended Audience :: Science/Research",
@@ -22,8 +22,9 @@ classifiers = [
 ]
 # Scientific Python reccomendation on Python and NumPy versions to support.
 # <https://scientific-python.org/specs/spec-0000/>
-# Upgrade the pyupgrade configuration in .pre-commit.config.yaml accordingly.
+# Keep in sync with the pyupgrade configuration in .pre-commit.config.yaml.
 requires-python = ">= 3.10"
+# Keep in sync with numpy_python_versions in noxfile.py.
 dependencies = ["numpy >= 1.24"]
 optional-dependencies.dev = [
     "build",

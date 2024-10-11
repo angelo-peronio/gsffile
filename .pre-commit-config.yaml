@@ -19,6 +19,7 @@ repos:
       rev: "v1.11.2"
       hooks:
           - id: mypy
+            # Dependencies needed for their types.
             additional_dependencies: [nox, numpy]
             # https://stackoverflow.com/a/75447331
             exclude: "tests/.*\\.py"
@@ -44,4 +45,5 @@ repos:
       rev: "v3.17.0"
       hooks:
           - id: pyupgrade
+            # Keep in sync with requires_python in pyproject.toml.
             args: [--py310-plus]
