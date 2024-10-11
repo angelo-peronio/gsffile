@@ -1,12 +1,15 @@
 """Nox configuration."""
 
 import re
+from pathlib import Path
+from tempfile import gettempdir
 
 import nox
 from nox.sessions import Session
 
 nox.needs_version = ">=2024.3.2"
 nox.options.default_venv_backend = "uv"
+nox.options.envdir = Path(gettempdir()) / "nox"
 
 
 def version_tuple(version: str) -> tuple[int, ...]:
