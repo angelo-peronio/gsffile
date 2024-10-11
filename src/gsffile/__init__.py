@@ -7,7 +7,6 @@ and avoiding instrument or application specific fields
 (though it can optionally bear them).
 """
 
-import logging
 from importlib.metadata import version
 
 from .read import read_gsf
@@ -15,7 +14,3 @@ from .write import write_gsf
 
 __version__ = version("gsffile")
 __all__ = ["read_gsf", "write_gsf"]
-
-
-# https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
-logging.getLogger("gsffile").addHandler(logging.NullHandler())
