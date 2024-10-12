@@ -61,7 +61,6 @@ local_scheme = "no-local-version"
 [tool.pytest.ini_options]
 addopts = [
     "-ra",
-    "--cov=gsffile",
     "--import-mode=importlib",
     "--strict-config",
     "--strict-markers",
