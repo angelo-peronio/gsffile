@@ -9,15 +9,18 @@ readme = "README.md"
 # binary wheels for it, otherwise the CI would take too long.
 classifiers = [
     "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Intended Audience :: Science/Research",
-    "Intended Audience :: Developers",
+    "Topic :: File Formats",
+    "Topic :: Scientific/Engineering :: Image Processing",
     "Typing :: Typed",
 ]
 # Scientific Python reccomendation on Python and NumPy versions to support.
