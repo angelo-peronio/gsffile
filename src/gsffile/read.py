@@ -79,8 +79,10 @@ def read_gsf(
             msg = f"Unexpected additional data found at the end of {path}"
             raise ValueError(msg)
 
-    log.info("Read image of shape (y, x): %s", data.shape)
-    log.info("Read metadata: %s", metadata)
+    log.info(
+        "Read an image of width: %s px, height: %s px", data.shape[1], data.shape[0]
+    )
+    log.debug("Read metadata: %s", metadata)
 
     # Do not duplicate information already present in data.shape.
     del metadata["XRes"]

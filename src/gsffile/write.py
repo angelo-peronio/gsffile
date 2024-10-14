@@ -70,6 +70,11 @@ def write_gsf(
     if path.suffix != ".gsf":
         msg = "The Gwyddion Simple Field file format uses the .gsf file name extension."
         raise ValueError(msg)
+    log.info(
+        "About to write an image of width: %s px, height: %s px",
+        data.shape[1],
+        data.shape[0],
+    )
 
     metadata = prepare_metadata(metadata)
     if ("XRes" in metadata) or ("YRes" in metadata):
@@ -92,7 +97,7 @@ def write_gsf(
             )
             raise ValueError(msg)
     metadata = {"XRes": data.shape[1], "YRes": data.shape[0]} | metadata
-    log.info("Metadata to be written: %s", metadata)
+    log.debug("Metadata to be written: %s", metadata)
 
     header = gsf_magic_line
     for key, value in metadata.items():
