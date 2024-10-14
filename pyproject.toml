@@ -82,7 +82,6 @@ ignore = [
     "COM812", # Trailing comma missing
 ]
 extend-per-file-ignores."tests/*.py" = [
-    "ANN",  # Type annotations
     "S101", # Assert used
 ]
 pydocstyle.convention = "numpy"

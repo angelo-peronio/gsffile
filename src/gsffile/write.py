@@ -112,7 +112,7 @@ def write_gsf(
         file.write(data.astype(gsf_dtype).tobytes(order=gsf_array_order))
 
 
-def prepare_data(data: np.typing.NDArray[np.float32]) -> np.typing.NDArray[np.float32]:
+def prepare_data(data: NDArray[np.float32]) -> NDArray[np.float32]:
     """Reshape 0- and 1-dimensional arrays to 2 dimensions."""
     return np.atleast_2d(data)
 

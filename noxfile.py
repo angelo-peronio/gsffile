@@ -17,12 +17,13 @@ def version_tuple(version: str) -> tuple[int, ...]:
     return tuple(int(s) for s in version.split("."))
 
 
+classifiers = nox.project.load_toml("pyproject.toml")["project"]["classifiers"]
 match_classifier = re.compile(
     r"Programming Language :: Python :: (?P<version>\d+\.\d+)"
 ).fullmatch
 python_versions = [
     m.group("version")
-    for classifier in nox.project.load_toml("pyproject.toml")["project"]["classifiers"]
+    for classifier in classifiers
     if (m := match_classifier(classifier))
 ]
 python_versions.sort(key=version_tuple)
