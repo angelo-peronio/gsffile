@@ -49,14 +49,12 @@ jobs:
             - name: Checkout source code
               uses: actions/checkout@v4
 
+            # https://docs.astral.sh/uv/guides/integration/github/
             - name: Setup uv
               uses: astral-sh/setup-uv@v3
 
-            - name: Setup nox
-              uses: wntrblm/nox@2024.10.09
-
             - name: Test package
-              run: nox
+              run: uvx nox
 
             - name: Upload coverage reports to Codecov
               uses: codecov/codecov-action@v4.6.0
