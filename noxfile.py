@@ -19,7 +19,7 @@ def version_tuple(version: str) -> tuple[int, ...]:
 
 match_classifier = re.compile(
     r"Programming Language :: Python :: (?P<version>\d+\.\d+)"
-).match
+).fullmatch
 python_versions = [
     m.group("version")
     for classifier in nox.project.load_toml("pyproject.toml")["project"]["classifiers"]
@@ -34,6 +34,7 @@ pypy_versions = ["pypy3.10"]
 # For a given NumPy version we support, the latest Python
 # with available NumPy binary wheels.
 # Keep in sync with dependencies and Python Trove classifiers in pyproject.toml.
+# Keep sorted by ascending NumPy version.
 numpy_python_versions = (
     ("1.24", "3.11"),
     ("1.25", "3.11"),
