@@ -44,8 +44,6 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
-            # One could test the packaged code instead.
-            # https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml
             - name: Checkout source code
               uses: actions/checkout@v4
 
