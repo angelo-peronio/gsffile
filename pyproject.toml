@@ -5,6 +5,7 @@ authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
 keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
 dynamic = ["version"]
 readme = "README.md"
+# Test will run against the Python versions listed in the Trove classifiers.
 # Support the next pre-release Python version only after NumPy has published
 # binary wheels for it, otherwise the CI would take too long.
 classifiers = [
@@ -23,7 +24,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Image Processing",
     "Typing :: Typed",
 ]
-# Scientific Python reccomendation on Python and NumPy versions to support.
+# Scientific Python recommendation on Python and NumPy versions to support.
 # <https://scientific-python.org/specs/spec-0000/>
 # Keep in sync with the pyupgrade configuration in .pre-commit.config.yaml.
 requires-python = ">= 3.10"
