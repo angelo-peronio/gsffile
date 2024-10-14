@@ -26,7 +26,6 @@ classifiers = [
 ]
 # Scientific Python recommendation on Python and NumPy versions to support.
 # <https://scientific-python.org/specs/spec-0000/>
-# Keep in sync with the pyupgrade configuration in .pre-commit.config.yaml.
 requires-python = ">= 3.10"
 # Keep in sync with numpy_python_versions in noxfile.py.
 dependencies = ["numpy >= 1.24"]
