@@ -1,23 +1,32 @@
-# Create a Python virtual enviroment in a global location,
-# possibly replacing an existing one.
-# Usage: copy into either
-#   * the project root folder, or
-#   * an immediate subfolder named `scripts`
-# and exectute.
-# Having the virtual enviroment outside the project folder prevents OneDrive sync issues.
-# If a pyproject.toml is present, install the corresponding package in editable mode.
-# If a requirements.txt is present, install the packages listed therein.
+<#
+    .SYNOPSIS
+    Create a Python virtual enviroment in a global location.
+
+    .DESCRIPTION
+    Usage: copy into either
+        * the project root folder, or
+        * an immediate subfolder named `scripts`
+    and execute.
+    If a `pyproject.toml` is found, also installs the corresponding package
+    in editable mode, including its "dev" optional dependencies.
+    If a `requirements.txt` is found, also installs the packages listed therein.
+    The virtual enviroment is placed outside the project folder to avoid synchronization
+    issues with Microsoft OneDrive.
+    The virtual enviroment is replaced if it already exists.
+    Requires uv <https://docs.astral.sh/uv/>.
+
+    .EXAMPLE
+    PS> .\New-PythonVenv.ps1
+
+    .EXAMPLE
+    PS> .\scripts\New-PythonVenv.ps1
+#>
 
 $ErrorActionPreference = 'Stop'
-
-$PythonVersion = ""  # Empty string for latest installed version.
 $VenvsRootFolder = "C:\venvs"
-
-if ($Env:VIRTUAL_ENV) {
-    "Active virtual environment detected. Please deactivate it "
-    "before trying again. Quitting." | Write-Host
-    Exit 1
-}
+# If feasible, constrain the Python version in pyproject.toml, instead.
+# Empty string for latest installed version.
+$PythonVersion = ""
 
 if ($PSScriptRoot
     | Split-Path -Leaf
@@ -33,25 +42,16 @@ else {
 
 $ProjectName = Split-Path $ProjectRootFolder -Leaf
 $VenvFolder = Join-Path $VenvsRootFolder $ProjectName
-New-Item $VenvFolder -ItemType Directory -Force | Out-Null
 
-"Using $(py -V:$PythonVersion --version) " `
-    + "at $(py -V:$PythonVersion -c "import sys; print(sys.executable)")" | Write-Host
-"Recreating Python virtual environment in $VenvFolder" | Write-Host
-py -V:$PythonVersion -m venv $VenvFolder --clear --upgrade-deps
-&"$VenvFolder\Scripts\Activate.ps1"
-# First install wheel, to be able to wheel-install setup.py-only packages.
-python -m pip install wheel
+uv venv --python=$PythonVersion $VenvFolder
 
 Push-Location $ProjectRootFolder
 if (Test-Path -Path pyproject.toml -PathType Leaf) {
     "Found pyproject.toml. Installing..." | Write-Host
-    python -m pip install --editable .[dev]
+    uv pip install --python=$VenvFolder --editable .[dev]
 }
 if (Test-Path -Path requirements.txt -PathType Leaf) {
     "Found requirements.txt. Installing..." | Write-Host
-    python -m pip install --requirement requirements.txt
+    uv pip install --python=$VenvFolder --requirement requirements.txt
 }
 Pop-Location
-
-deactivate
