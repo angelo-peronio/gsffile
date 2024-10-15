@@ -1,6 +1,7 @@
 """Test write_gsf."""
 
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pytest
@@ -30,7 +31,8 @@ def test_wrong_dtype(tmp_path: Path) -> None:
     """Test wrong dtype --> ☠️."""
     data = np.zeros((3, 2), dtype=np.float64)
     with pytest.raises(ValueError, match=r".* only 32-bit floating point data.*"):
-        write_gsf(tmp_path / "test.gsf", data)
+        # Ignore unused-ignore to circumvent a (possible) MyPy bug.
+        write_gsf(tmp_path / "test.gsf", data)  # type: ignore[arg-type, unused-ignore]
 
 
 empty_shapes = [(0,), (0, 0), (3, 0), (0, 3)]
@@ -47,7 +49,7 @@ def test_empty_array(tmp_path: Path, shape: tuple[int]) -> None:
 @pytest.mark.parametrize(
     "meta", [{"XRes": 101}, {" XRes ": 101}], ids=lambda meta: next(iter(meta.keys()))
 )
-def test_XRes_in_meta(tmp_path: Path, meta: dict) -> None:  # noqa: N802
+def test_XRes_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:  # noqa: N802
     """Test XRes in meta --> ☠️."""
     data = np.zeros((3, 2), dtype=np.float32)
     with pytest.raises(ValueError, match=r".* neither XRes nor YRes in metadata.*"):
@@ -57,7 +59,7 @@ def test_XRes_in_meta(tmp_path: Path, meta: dict) -> None:  # noqa: N802
 @pytest.mark.parametrize(
     "meta", [{"key=key": "value"}, {"key": "="}], ids=lambda meta: str(meta)
 )
-def test_equal_sign_in_meta(tmp_path: Path, meta: dict) -> None:
+def test_equal_sign_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:
     """Test equal sign in meta --> ☠️."""
     data = np.zeros((3, 2), dtype=np.float32)
     with pytest.raises(ValueError, match=r"Equal sign .*"):
@@ -69,7 +71,7 @@ def test_equal_sign_in_meta(tmp_path: Path, meta: dict) -> None:
     [{"key\x00key": "value"}, {"key": "value\x00value"}],
     ids=lambda meta: str(meta),
 )
-def test_null_char_in_meta(tmp_path: Path, meta: dict) -> None:
+def test_null_char_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:
     """Test equal sign in meta --> ☠️."""
     data = np.zeros((3, 2), dtype=np.float32)
     with pytest.raises(ValueError, match=r"Null character .*"):

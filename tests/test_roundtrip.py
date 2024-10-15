@@ -24,7 +24,7 @@ def assert_roundtrip_ok(
     expected_meta = prepare_metadata(meta)
     assert meta_2 == expected_meta
     # Check metadata order.
-    assert list[meta_2.keys()] == list[expected_meta.keys()]
+    assert list(meta_2.keys()) == list(expected_meta.keys())
     np.testing.assert_array_equal(data_2, expected_data)
 
 
