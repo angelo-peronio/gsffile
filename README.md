@@ -3,7 +3,7 @@
 [![pypi](https://img.shields.io/pypi/v/gsffile)](https://pypi.org/project/gsffile/)
 [![conda-forge](https://img.shields.io/conda/vn/conda-forge/gsffile)](https://anaconda.org/conda-forge/gsffile)
 [![python](https://img.shields.io/pypi/pyversions/gsffile)](https://pypi.org/project/gsffile/)
-[![license](https://img.shields.io/github/license/angelo-peronio/gsffile?color=2DBA4E)](https://github.com/angelo-peronio/gsffile/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/angelo-peronio/gsffile?color=4CC71E)](https://github.com/angelo-peronio/gsffile/blob/master/LICENSE)
 [![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/angelo-peronio/gsffile/master.svg)](https://results.pre-commit.ci/latest/github/angelo-peronio/gsffile/master)
 [![codecov](https://codecov.io/github/angelo-peronio/gsffile/graph/badge.svg)](https://codecov.io/github/angelo-peronio/gsffile)
@@ -14,7 +14,7 @@
 * read image and metadata from [Gwyddion Simple Field](http://gwyddion.net/documentation/user-guide-en/gsf.html) (.gsf) files, and
 * store NumPy arrays in Gwyddion Simple Field files.
 
-It features type annotations and an overgrown test suite.
+It features type annotations, minimal logging, and an overgrown test suite.
 
 ## Setup
 
@@ -37,7 +37,7 @@ from gsffile import read_gsf, write_gsf
 import numpy as np
 
 # The Gwyddion Simple Field format supports only 32-bit floating point data.
-data = np.eye((100, 100), dtype=np.float32)
+data = np.eye(100, dtype=np.float32)
 
 # Optional metadata.
 metadata = {

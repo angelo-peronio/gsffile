@@ -90,8 +90,8 @@ pydocstyle.convention = "numpy"
 [tool.mypy]
 files = ["src", "tests", "noxfile.py"]
 strict = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 warn_unreachable = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 
 [tool.uv]
 # uv should not cache gsffile.
