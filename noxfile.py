@@ -10,6 +10,8 @@ from nox.sessions import Session
 nox.needs_version = ">=2024.3.2"
 nox.options.default_venv_backend = "uv"
 nox.options.envdir = Path(gettempdir()) / "nox"
+nox.options.error_on_missing_interpreters = True
+nox.options.error_on_external_run = True
 
 
 def version_tuple(version: str) -> tuple[int, ...]:
@@ -17,22 +19,27 @@ def version_tuple(version: str) -> tuple[int, ...]:
     return tuple(int(s) for s in version.split("."))
 
 
-classifiers = nox.project.load_toml("pyproject.toml")["project"]["classifiers"]
-match_classifier = re.compile(
-    r"Programming Language :: Python :: (?P<version>\d+\.\d+)"
-).fullmatch
-python_versions = [
-    m.group("version")
-    for classifier in classifiers
-    if (m := match_classifier(classifier))
-]
-python_versions.sort(key=version_tuple)
+def get_python_versions() -> list[str]:
+    """Extract a sorted list of supported Python versions from the Trove classifiers."""
+    classifiers = nox.project.load_toml("pyproject.toml")["project"]["classifiers"]
+    match_classifier = re.compile(
+        r"Programming Language :: Python :: (?P<version>\d+\.\d+)"
+    ).fullmatch
+    python_versions = [
+        m.group("version")
+        for classifier in classifiers
+        if (m := match_classifier(classifier))
+    ]
+    return sorted(python_versions, key=version_tuple)
+
+
+python_versions = get_python_versions()
 
 # Only upgrade the PyPy version after NumPy publishes binary wheels
 # for the new one, otherwise the CI would take too long.
 pypy_versions = ["pypy3.10"]
 
-# For a given NumPy version we support, the latest Python
+# For each supported NumPy version, the latest Python
 # with available NumPy binary wheels.
 # Keep in sync with dependencies and Python Trove classifiers in pyproject.toml.
 # Keep sorted by ascending NumPy version.
