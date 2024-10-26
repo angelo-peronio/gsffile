@@ -3,6 +3,7 @@
 import re
 from pathlib import Path
 from tempfile import gettempdir
+from typing import Any
 
 import nox
 from nox.sessions import Session
@@ -19,9 +20,9 @@ def version_tuple(version: str) -> tuple[int, ...]:
     return tuple(int(s) for s in version.split("."))
 
 
-def get_python_versions() -> list[str]:
+def get_python_versions(pyproject: dict[str, Any]) -> list[str]:
     """Extract a sorted list of supported Python versions from the Trove classifiers."""
-    classifiers = nox.project.load_toml("pyproject.toml")["project"]["classifiers"]
+    classifiers = pyproject["project"]["classifiers"]
     match_classifier = re.compile(
         r"Programming Language :: Python :: (?P<version>\d+\.\d+)"
     ).fullmatch
@@ -33,23 +34,15 @@ def get_python_versions() -> list[str]:
     return sorted(python_versions, key=version_tuple)
 
 
-python_versions = get_python_versions()
+pyproject = nox.project.load_toml("pyproject.toml")
+python_versions = get_python_versions(pyproject)
+oldest_deps = [
+    spec.replace(">=", "==") for spec in pyproject["project"]["dependencies"]
+]
 
 # Only upgrade the PyPy version after NumPy publishes binary wheels
 # for the new one, otherwise the CI would take too long.
 pypy_versions = ["pypy3.10"]
-
-# For each supported NumPy version, the latest Python
-# with available NumPy binary wheels.
-# Keep in sync with dependencies and Python Trove classifiers in pyproject.toml.
-# Keep sorted by ascending NumPy version.
-numpy_python_versions = (
-    ("1.24", "3.11"),
-    ("1.25", "3.11"),
-    ("1.26", "3.12"),
-    ("2.0", "3.12"),
-    ("2.1", "3.13"),
-)
 
 
 @nox.session(python=python_versions + pypy_versions)
@@ -59,18 +52,10 @@ def test_python(session: Session) -> None:
     session.run("pytest")
 
 
-@nox.session()
-@nox.parametrize("numpy, python", numpy_python_versions)
-def test_numpy(session: Session, numpy: str) -> None:
-    """Test the supported NumPy versions."""
-    session.install(f"numpy=={numpy}", ".[test]")
-    session.run("pytest")
-
-
 @nox.session(python=python_versions[0])
-def test_oldest(session: Session) -> None:
+def test_oldest_deps(session: Session) -> None:
     """Test the oldest supported versions of Python and the dependencies."""
-    session.install(f"numpy=={numpy_python_versions[0][0]}", ".[test]")
+    session.install(*oldest_deps, ".[test]")
     session.run("pytest")
 
 

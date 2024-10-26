@@ -19,4 +19,9 @@
     ],
     "git.followTagsWhenSync": true,
     "python.analysis.typeCheckingMode": "off",
+    "cSpell.words": [
+        "Codecov",
+        "envdir",
+        "gsffile"
+    ],
 }
