@@ -36,13 +36,12 @@ def get_python_versions(pyproject: dict[str, Any]) -> list[str]:
 
 pyproject = nox.project.load_toml("pyproject.toml")
 python_versions = get_python_versions(pyproject)
-oldest_deps = [
-    spec.replace(">=", "==") for spec in pyproject["project"]["dependencies"]
-]
-
 # Only upgrade the PyPy version after NumPy publishes binary wheels
 # for the new one, otherwise the CI would take too long.
 pypy_versions = ["pypy3.10"]
+oldest_deps = [
+    spec.replace(">=", "==") for spec in pyproject["project"]["dependencies"]
+]
 
 
 @nox.session(python=python_versions + pypy_versions)
