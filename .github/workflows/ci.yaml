@@ -49,13 +49,13 @@ jobs:
 
             # https://docs.astral.sh/uv/guides/integration/github/
             - name: Setup uv
-              uses: astral-sh/setup-uv@v3
+              uses: astral-sh/setup-uv@v4
 
             - name: Test package
               run: uvx nox
 
             - name: Upload coverage reports to Codecov
-              uses: codecov/codecov-action@v5.0.2
+              uses: codecov/codecov-action@v5.0.7
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   fail_ci_if_error: true
