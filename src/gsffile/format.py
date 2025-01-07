@@ -4,8 +4,8 @@ from typing import Final
 
 import numpy as np
 
-null_byte: Final = b"\x00"  # bytes
-null_char: Final = null_byte.decode()  # str
+null_byte: Final[bytes] = b"\x00"
+null_char: Final[str] = null_byte.decode()
 gsf_magic_line: Final = "Gwyddion Simple Field 1.0\n"
 # This cries for a TypedDict, but I have yet to find a sane way to specify "extra"
 # (not required, not known in advance) keys.
