@@ -22,6 +22,13 @@ repos:
             # Dependencies needed for their types.
             additional_dependencies: [nox, numpy, pytest]
 
+    # - repo: https://github.com/woodruffw/zizmor-pre-commit
+    #   rev: "v1.1.0"
+    #   hooks:
+    #       - id: zizmor
+    #         types: [yaml]
+    #         files: \.github/workflows/.*$
+
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: "v5.0.0"
       hooks:
