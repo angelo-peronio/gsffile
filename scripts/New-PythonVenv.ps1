@@ -1,6 +1,7 @@
+#Requires -Version 7
 <#
     .SYNOPSIS
-    Create a Python virtual enviroment in a global location.
+    Create a Python virtual enviroment.
 
     .DESCRIPTION
     Usage: copy into either
@@ -10,41 +11,36 @@
     If a `pyproject.toml` is found, also installs the corresponding package
     in editable mode, including its "dev" optional dependencies.
     If a `requirements.txt` is found, also installs the packages listed therein.
-    The virtual enviroment is placed outside the project folder to avoid synchronization
-    issues with Microsoft OneDrive.
+    The virtual enviroment can be placed outside the project folder, in a global location,
+    to avoid synchronization issues with Microsoft OneDrive.
     The virtual enviroment is replaced if it already exists.
     Requires uv <https://docs.astral.sh/uv/>.
 
     .EXAMPLE
-    PS> .\New-PythonVenv.ps1
+    PS> .\scripts\New-PythonVenv.ps1
 
     .EXAMPLE
-    PS> .\scripts\New-PythonVenv.ps1
+    PS> .\New-PythonVenv.ps1 -OutsideProjectFolder
 #>
 
-$ErrorActionPreference = 'Stop'
+param (
+    # Place the environemnt environemnt outside the project folder, in a global location.
+    [switch]$OutsideProjectFolder = $true,
+    # Python version to use. If feasible, specify it in pyproject.toml or .python-version, instead.
+    # Defaults to the latest installed version.
+    [string]$PythonVersion = ""
+)
+$ErrorActionPreference = "Stop"
 $VenvsRootFolder = "C:\venvs"
-# If feasible, constrain the Python version in pyproject.toml, instead.
-# Empty string for latest installed version.
-$PythonVersion = ""
 
-if ($PSScriptRoot
-    | Split-Path -Leaf
-    | ForEach-Object ToLower
-    | ForEach-Object Equals("scripts")) {
-    # This script is in /scripts
-    $ProjectRootFolder = (Get-Item $PSScriptRoot).Parent
-}
-else {
-    # This script is in the project root
-    $ProjectRootFolder = $PSScriptRoot
-}
-$ProjectName = Split-Path $ProjectRootFolder -Leaf
-$VenvFolder = Join-Path $VenvsRootFolder $ProjectName
+$InsideScriptsFolder = (Get-Item $PSScriptRoot).Name.ToLowerInvariant().Equals("scripts")
+$ProjectRoot = ($InsideScriptsFolder) ? (Get-Item $PSScriptRoot).Parent : $PSScriptRoot
+$ProjectName = Split-Path $ProjectRoot -Leaf
+$VenvFolder = ($OutsideProjectFolder) ? (Join-Path $VenvsRootFolder $ProjectName) : ".venv"
 
-Push-Location $ProjectRootFolder
+Push-Location $ProjectRoot
 
-uv venv --python=$PythonVersion $VenvFolder
+uv venv --python=$PythonVersion $VenvFolder --prompt=$ProjectName
 
 if (Test-Path -Path pyproject.toml -PathType Leaf) {
     "Found pyproject.toml. Installing..." | Write-Host
