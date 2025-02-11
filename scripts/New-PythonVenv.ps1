@@ -4,16 +4,16 @@
     Create a Python virtual enviroment.
 
     .DESCRIPTION
-    Usage: copy into either
-        * the project root folder, or
-        * an immediate subfolder named `scripts`
-    and execute.
+    Usage:
+        * copy into your project,
+        * set the default values of the parameters at your convenience,
+        * execute.
     If a `pyproject.toml` is found, also installs the corresponding package
     in editable mode, including its "dev" optional dependencies.
     If a `requirements.txt` is found, also installs the packages listed therein.
-    The virtual enviroment can be placed outside the project folder, in a global location,
-    to avoid synchronization issues with Microsoft OneDrive.
     The virtual enviroment is replaced if it already exists.
+    Placing the environment outside the project folder avoids synchronization issues
+    with Microsoft OneDrive.
     Requires uv <https://docs.astral.sh/uv/>.
 
     .EXAMPLE
@@ -24,31 +24,37 @@
 #>
 
 param (
-    # Place the environemnt environemnt outside the project folder, in a global location.
+    # Place the environemnt environemnt outside the project folder, in $VenvsRootFolder
     [switch]$OutsideProjectFolder = $true,
+    # Folder containing the enviroments created with -OutsideProjectFolder
+    [string]$VenvsRootFolder = "C:\venvs",
     # Python version to use. If feasible, specify it in pyproject.toml or .python-version, instead.
     # Defaults to the latest installed version.
-    [string]$PythonVersion = ""
+    [string]$PythonVersion = "",
+    # Location of the project root folder relative to the folder containing this script.
+    # Common values are "." or "..".
+    [string]$ProjectRoot = ".."
 )
 $ErrorActionPreference = "Stop"
-$VenvsRootFolder = "C:\venvs"
 
-$InsideScriptsFolder = (Get-Item $PSScriptRoot).Name.ToLowerInvariant().Equals("scripts")
-$ProjectRoot = ($InsideScriptsFolder) ? (Get-Item $PSScriptRoot).Parent : $PSScriptRoot
+$ProjectRoot = Join-Path $PSScriptRoot $ProjectRoot | Resolve-Path
+"Project root folder: $ProjectRoot" | Write-Host
 $ProjectName = Split-Path $ProjectRoot -Leaf
 $VenvFolder = ($OutsideProjectFolder) ? (Join-Path $VenvsRootFolder $ProjectName) : ".venv"
 
 Push-Location $ProjectRoot
+try {
+    uv venv --python=$PythonVersion $VenvFolder --prompt=$ProjectName
 
-uv venv --python=$PythonVersion $VenvFolder --prompt=$ProjectName
-
-if (Test-Path -Path pyproject.toml -PathType Leaf) {
-    "Found pyproject.toml. Installing..." | Write-Host
-    uv pip install --python=$VenvFolder --editable .[dev]
+    if (Test-Path -Path pyproject.toml -PathType Leaf) {
+        "Found pyproject.toml. Installing..." | Write-Host
+        uv pip install --python=$VenvFolder --editable .[dev]
+    }
+    if (Test-Path -Path requirements.txt -PathType Leaf) {
+        "Found requirements.txt. Installing..." | Write-Host
+        uv pip install --python=$VenvFolder --requirement requirements.txt
+    }
 }
-if (Test-Path -Path requirements.txt -PathType Leaf) {
-    "Found requirements.txt. Installing..." | Write-Host
-    uv pip install --python=$VenvFolder --requirement requirements.txt
+finally {
+    Pop-Location
 }
-
-Pop-Location
