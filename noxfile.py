@@ -10,7 +10,7 @@ from nox.sessions import Session
 
 nox.needs_version = ">=2024.3.2"
 nox.options.default_venv_backend = "uv"
-nox.options.envdir = Path(gettempdir()) / "nox"
+nox.options.envdir = str(Path(gettempdir()) / "nox")
 nox.options.error_on_missing_interpreters = True
 nox.options.error_on_external_run = True
 
