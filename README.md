@@ -2,8 +2,9 @@
 
 [![pypi](https://img.shields.io/pypi/v/gsffile)](https://pypi.org/project/gsffile/)
 [![conda-forge](https://img.shields.io/conda/vn/conda-forge/gsffile)](https://anaconda.org/conda-forge/gsffile)
-[![python](https://img.shields.io/pypi/pyversions/gsffile)](https://pypi.org/project/gsffile/)
+[![pypi-downloads](https://img.shields.io/pypi/dm/gsffile)](https://pypistats.org/packages/gsffile)
 [![license](https://img.shields.io/github/license/angelo-peronio/gsffile?color=4CC71E)](https://github.com/angelo-peronio/gsffile/blob/master/LICENSE)
+[![python](https://img.shields.io/pypi/pyversions/gsffile)](https://pypi.org/project/gsffile/)
 [![ci](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml/badge.svg)](https://github.com/angelo-peronio/gsffile/actions/workflows/ci.yaml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/angelo-peronio/gsffile/master.svg)](https://results.pre-commit.ci/latest/github/angelo-peronio/gsffile/master)
 [![codecov](https://codecov.io/github/angelo-peronio/gsffile/graph/badge.svg)](https://codecov.io/github/angelo-peronio/gsffile)
