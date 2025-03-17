@@ -71,7 +71,7 @@ def read_gsf(
 
         # Read data.
         # cast is there to persuade mypy.
-        shape = cast(int, metadata["YRes"]), cast(int, metadata["XRes"])
+        shape = cast("int", metadata["YRes"]), cast("int", metadata["XRes"])
         data_size = gsf_dtype.itemsize * shape[0] * shape[1]
         data = np.frombuffer(file.read(data_size), dtype=gsf_dtype).reshape(shape)
 
