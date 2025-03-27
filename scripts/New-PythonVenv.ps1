@@ -1,4 +1,4 @@
-#Requires -Version 7
+#Requires -Version 7.4
 <#
     .SYNOPSIS
     Create a Python virtual enviroment.
@@ -35,6 +35,8 @@ param (
     # Common values are "." or "..".
     [string]$ProjectRoot = ".."
 )
+
+$PSNativeCommandUseErrorActionPreference = $true
 $ErrorActionPreference = "Stop"
 
 $ProjectRoot = Join-Path $PSScriptRoot $ProjectRoot | Resolve-Path
