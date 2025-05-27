@@ -101,7 +101,6 @@ warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 
 [tool.uv]
-# uv should not cache gsffile.
-# See e.g. warning at
-# <https://nox.thea.codes/en/stable/usage.html#changing-the-sessions-default-backend>
+# Tell uv not to cache gsffile. Not sure if it is actually needed.
+# https://github.com/wntrblm/nox/issues/914
 reinstall-package = ["gsffile"]
