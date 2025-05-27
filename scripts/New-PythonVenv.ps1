@@ -42,11 +42,11 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = Join-Path $PSScriptRoot $ProjectRoot | Resolve-Path
 "Project root folder: $ProjectRoot" | Write-Host
 $ProjectName = Split-Path $ProjectRoot -Leaf
-$VenvFolder = ($OutsideProjectFolder) ? (Join-Path $VenvsRootFolder $ProjectName) : ".venv"
+$VenvFolder = $OutsideProjectFolder ? (Join-Path $VenvsRootFolder $ProjectName) : ".venv"
 
 Push-Location $ProjectRoot
 try {
-    uv venv --python=$PythonVersion $VenvFolder --prompt=$ProjectName
+    uv venv --python=$PythonVersion --prompt=$ProjectName $VenvFolder
 
     if (Test-Path -Path pyproject.toml -PathType Leaf) {
         "Found pyproject.toml. Installing..." | Write-Host
