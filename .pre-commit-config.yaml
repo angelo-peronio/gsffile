@@ -1,47 +1,51 @@
 ci:
-    autoupdate_commit_msg: "Update pre-commit hooks"
+    autoupdate_commit_msg: Update pre-commit hooks
 
 repos:
     - repo: https://github.com/astral-sh/ruff-pre-commit
-      rev: "v0.11.13"
+      rev: v0.11.13
       hooks:
-          - id: ruff
-            args: ["--fix", "--show-fixes"]
+          - id: ruff-check
+            args: [--fix]
           - id: ruff-format
 
     - repo: https://github.com/rbubley/mirrors-prettier
-      rev: "v3.5.3"
+      rev: v3.5.3
       hooks:
           - id: prettier
             types_or: [toml, yaml]
 
     - repo: https://github.com/pre-commit/mirrors-mypy
-      rev: "v1.16.0"
+      rev: v1.16.0
       hooks:
           - id: mypy
             # Dependencies needed for their types.
             additional_dependencies: [nox, numpy, pytest]
 
     # - repo: https://github.com/woodruffw/zizmor-pre-commit
-    #   rev: "v1.1.0"
+    #   rev: v1.1.0
     #   hooks:
     #       - id: zizmor
     #         types: [yaml]
     #         files: \.github/workflows/.*$
 
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: "v5.0.0"
+      rev: v5.0.0
       hooks:
           - id: check-added-large-files
           - id: check-case-conflict
+          - id: check-illegal-windows-names
           - id: check-merge-conflict
           - id: check-symlinks
+          - id: check-toml
+          - id: check-vcs-permalinks
           - id: check-yaml
           - id: debug-statements
+          - id: destroyed-symlinks
           - id: end-of-file-fixer
+          - id: fix-byte-order-marker
           - id: mixed-line-ending
           - id: name-tests-test
             args: ["--pytest-test-first"]
           - id: trailing-whitespace
           - id: check-vcs-permalinks
-          - id: fix-byte-order-marker
