@@ -47,14 +47,14 @@ oldest_deps = [
 @nox.session(python=python_versions + more_python_versions)
 def test_python(session: Session) -> None:
     """Test the supported Python versions."""
-    session.install(".[test]")
+    session.install("--group=test", ".")
     session.run("pytest")
 
 
 @nox.session(python=python_versions[0])
 def test_oldest_deps(session: Session) -> None:
     """Test the oldest supported versions of Python and the dependencies."""
-    session.install(*oldest_deps, ".[test]")
+    session.install(*oldest_deps, "--group=test", ".")
     session.run("pytest")
 
 
@@ -63,5 +63,5 @@ def coverage(session: Session) -> None:
     """Generate test coverage report."""
     # We generate XML because Codecov would convert it to XML anyway.
     # Coverage analysis slows down the testing, so we do it only once.
-    session.install(".[test]")
+    session.install("--group=test", ".")
     session.run("pytest", "--cov=gsffile", "--cov-report=xml")
