@@ -50,7 +50,7 @@ try {
 
     if (Test-Path -Path pyproject.toml -PathType Leaf) {
         "Found pyproject.toml. Installing..." | Write-Host
-        uv pip install --python=$VenvFolder --editable .[dev]
+        uv pip install --python=$VenvFolder --group=dev --editable=.
     }
     if (Test-Path -Path requirements.txt -PathType Leaf) {
         "Found requirements.txt. Installing..." | Write-Host

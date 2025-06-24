@@ -2,6 +2,7 @@
 name = "gsffile"
 description = "Read and write Gwyddion Simple Field files"
 authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
+license = "MIT"
 keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
 dynamic = ["version"]
 readme = "README.md"
@@ -12,7 +13,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -36,16 +36,10 @@ requires-python = ">= 3.10"
 # Before attempting stunts here, consider the fragile logic
 # for oldest_deps in noxfile.py.
 dependencies = ["numpy >= 1.24"]
-optional-dependencies.dev = [
-    "build",
-    "mypy",
-    "pre-commit",
-    "nox",
-    "ruff",
-    "twine",
-    "gsffile[test]",
-]
-optional-dependencies.test = ["pytest", "pytest-cov"]
+
+[dependency-groups]
+dev = [{ include-group = "test" }, "build", "mypy", "pre-commit", "nox", "ruff"]
+test = ["pytest", "pytest-cov"]
 
 [project.urls]
 Repository = "https://github.com/angelo-peronio/gsffile"
@@ -53,7 +47,7 @@ Issues = "https://github.com/angelo-peronio/gsffile/issues"
 "GSF format" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
 
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
+requires = ["hatchling >= 1.26", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.hatch]
