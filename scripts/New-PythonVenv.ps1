@@ -46,7 +46,7 @@ $VenvFolder = $OutsideProjectFolder ? (Join-Path $VenvsRootFolder $ProjectName) 
 
 Push-Location $ProjectRoot
 try {
-    uv venv --python=$PythonVersion --prompt=$ProjectName $VenvFolder
+    uv venv --python=$PythonVersion --prompt=$ProjectName --clear $VenvFolder
 
     if (Test-Path -Path pyproject.toml -PathType Leaf) {
         "Found pyproject.toml. Installing..." | Write-Host
