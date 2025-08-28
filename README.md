@@ -34,24 +34,25 @@ conda install gsffile
 ## Quickstart
 
 ```python
-from gsffile import read_gsf, write_gsf
-import numpy as np
+>>> from gsffile import read_gsf, write_gsf
+>>> import numpy as np
 
 # The Gwyddion Simple Field format supports only 32-bit floating point data.
-data = np.eye(100, dtype=np.float32)
+>>> data = np.eye(100, dtype=np.float32)
 
 # Optional metadata.
-metadata = {
-    "XReal": 5e-05,
-    "YReal": 5e-05,
-    "XYUnits": "m",
-    "ZUnits": "V",
-    "CustomKey": 33,
-    }
+>>> metadata = {
+...    "XReal": 5e-05,
+...    "YReal": 5e-05,
+...    "XYUnits": "m",
+...    "ZUnits": "V",
+...    "CustomKey": 33,
+...    }
 
-write_gsf("example.gsf", data, metadata)
+>>> write_gsf("example.gsf", data, metadata)
 
-data, metadata = read_gsf("example.gsf")
+>>> data, metadata = read_gsf("example.gsf")
+
 ```
 
 ## Documentation

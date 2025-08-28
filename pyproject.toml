@@ -73,6 +73,7 @@ local_scheme = "no-local-version"
 [tool.pytest.ini_options]
 addopts = [
     "-ra",
+    "--doctest-glob=README.md",
     "--import-mode=importlib",
     "--strict-config",
     "--strict-markers",
@@ -80,8 +81,8 @@ addopts = [
 filterwarnings = ["error"]
 log_cli_level = "DEBUG"
 minversion = "7"
+testpaths = ["README.md", "tests"]
 xfail_strict = true
-testpaths = ["tests"]
 
 [tool.ruff.lint]
 extend-select = ["ALL"]
@@ -98,8 +99,3 @@ files = ["src", "tests", "noxfile.py"]
 strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
-
-[tool.uv]
-# Tell uv not to cache gsffile. Not sure if it is actually needed.
-# https://github.com/wntrblm/nox/issues/914
-reinstall-package = ["gsffile"]
