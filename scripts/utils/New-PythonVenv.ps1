@@ -33,7 +33,7 @@ param (
     [string]$PythonVersion = "",
     # Location of the project root folder relative to the folder containing this script.
     # Common values are "." or "..".
-    [string]$ProjectRoot = ".."
+    [string]$ProjectRoot = "../.."
 )
 
 $PSNativeCommandUseErrorActionPreference = $true
