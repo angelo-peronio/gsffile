@@ -6,7 +6,7 @@ repos:
     rev: v0.12.10
     hooks:
       - id: ruff-check
-        args: [--fix]
+        args: [--fix, --show-fixes]
       - id: ruff-format
 
   - repo: https://github.com/rbubley/mirrors-prettier
@@ -21,13 +21,6 @@ repos:
       - id: mypy
         # Dependencies needed for their types.
         additional_dependencies: [nox, numpy, pytest]
-
-  # - repo: https://github.com/woodruffw/zizmor-pre-commit
-  #   rev: v1.1.0
-  #   hooks:
-  #       - id: zizmor
-  #         types: [yaml]
-  #         files: \.github/workflows/.*$
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
