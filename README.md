@@ -9,6 +9,7 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/angelo-peronio/gsffile/master.svg)](https://results.pre-commit.ci/latest/github/angelo-peronio/gsffile/master)
 [![codecov](https://codecov.io/github/angelo-peronio/gsffile/graph/badge.svg)](https://codecov.io/github/angelo-peronio/gsffile)
 [![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/format.json)](https://docs.astral.sh/ruff/)
+[![DOI](https://zenodo.org/badge/821387178.svg)](https://doi.org/10.5281/zenodo.16998022)
 
 `gsffile` is a Python module to:
 
@@ -62,3 +63,7 @@ conda install gsffile
 ```bash
 python -c "import gsffile; help(gsffile)"
 ```
+
+## How to cite
+
+Cite `gsffile` in your published work using the metadata in [`CITATION.cff`](CITATION.cff).

@@ -9,22 +9,23 @@ authors:
   - given-names: Angelo
     family-names: Peronio
     orcid: "https://orcid.org/0000-0001-9756-5670"
-url: "https://github.com/angelo-peronio/gsffile"
-repository-code: "https://github.com/angelo-peronio/gsffile"
-repository-artifact: "https://pypi.org/project/gsffile/"
+license: MIT
 abstract: >-
-  gsffile is a Python module to:
-
-  * read image and metadata from Gwyddion Simple Field (.gsf) files, and
-  * store NumPy arrays in Gwyddion Simple Field files.
-
-  It features type annotations, minimal logging, and an overgrown test suite.
+  gsffile is a Python module to read image and metadata from Gwyddion Simple Field
+  (.gsf) files, and store NumPy arrays in Gwyddion Simple Field files. It features
+  type annotations, minimal logging, and an overgrown test suite.
 keywords:
   - python
   - numpy
   - gsf
   - gwyddion
   - gwyddion-simple-field
-license: MIT
-version: 0.5.2
+url: "https://github.com/angelo-peronio/gsffile"
+repository-code: "https://github.com/angelo-peronio/gsffile"
+repository-artifact: "https://pypi.org/project/gsffile/"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.16998022
+    description: The concept DOI of this work.
+version: 0.5.3
 date-released: "2025-08-29"
