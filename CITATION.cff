@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: gsffile
+message: If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Carlo
+    family-names: Dri
+    orcid: "https://orcid.org/0000-0001-9040-5746"
+  - given-names: Angelo
+    family-names: Peronio
+    orcid: "https://orcid.org/0000-0001-9756-5670"
+url: "https://github.com/angelo-peronio/gsffile"
+repository-code: "https://github.com/angelo-peronio/gsffile"
+repository-artifact: "https://pypi.org/project/gsffile/"
+abstract: >-
+  gsffile is a Python module to:
+
+  * read image and metadata from Gwyddion Simple Field (.gsf) files, and
+  * store NumPy arrays in Gwyddion Simple Field files.
+
+  It features type annotations, minimal logging, and an overgrown test suite.
+keywords:
+  - python
+  - numpy
+  - gsf
+  - gwyddion
+  - gwyddion-simple-field
+license: MIT
+version: 0.5.1
+date-released: "2025-07-30"
