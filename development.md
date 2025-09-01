@@ -14,6 +14,6 @@ Use `scripts\Release-Package.ps1`:
 * [ ] `xarray` integration
 * [ ] Avoid having to pass `tmp_dir` to tests calling `assert_roundtrip_ok`
 
-## Ideas
+## Notes
 
 * [repo-review](https://learn.scientific-python.org/development/guides/repo-review/?repo=angelo-peronio%2Fgsffile&branch=master)

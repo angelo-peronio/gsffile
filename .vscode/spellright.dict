@@ -2,6 +2,7 @@ pypi
 conda
 codecov
 Gwyddion
-Quickstart
+quickstart
 pytest
 Zenodo
+BibTeX
