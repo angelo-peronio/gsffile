@@ -120,7 +120,9 @@ regex = true
 
 [[tool.bumpversion.files]]
 filename = "CHANGELOG.md"
-search = '## [Unreleased]'
+search = '''
+## [Unreleased]
+'''
 replace = '''
 ## [Unreleased]
 

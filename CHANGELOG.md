@@ -13,7 +13,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
  · [GitHub release](https://github.com/angelo-peronio/gsffile/releases/tag/v0.5.4)
  · [source](https://github.com/angelo-peronio/gsffile/tree/v0.5.4)
 
-
 ### Added
 
 * Pre-commit hook to check `CITATION.cff`.
