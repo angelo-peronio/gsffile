@@ -38,7 +38,6 @@ dependencies = ["numpy >= 1.24"]
 
 [dependency-groups]
 dev = [
-    "build",
     "bump-my-version",
     "cffconvert",
     "mypy",
@@ -60,7 +59,7 @@ requires = ["hatchling >= 1.26", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.hatch]
-build.targets.sdist.only-packages = true
+build.targets.sdist.exclude = ["/.**", "/scripts", "development.md"]
 version.source = "vcs"
 
 [tool.hatch.version.raw-options]

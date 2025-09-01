@@ -26,6 +26,6 @@ repository-artifact: "https://pypi.org/project/gsffile/"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.16998022
-    description: The concept DOI of this work.
+    description: The concept DOI representing all the versions of this work.
 version: 0.5.3
 date-released: "2025-08-29"

@@ -8,10 +8,10 @@
     A CI pipeline will then build, test, and release.
 
     .EXAMPLE
-    PS> .\scripts\Release-Package.ps1 -Bump patch
+    PS> .\scripts\Release-Package.ps1 -VersionComponent patch
 
     .NOTES
-    Requires [bump-my-version](https://github.com/callowayproject/bump-my-version)
+    Requires bump-my-version <https://github.com/callowayproject/bump-my-version>.
 #>
 
 Param (
