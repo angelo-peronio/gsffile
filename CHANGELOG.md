@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 * Pre-commit hook to check `CITATION.cff`.
 * Automated version bumping of `CITATION.cff` and `CHANGELOG.md`.
+* Include `CITATION.cff` and `CHANGELOG.md` in source distribution.
+* Link changelog to GitHub release notes.
 
 ## [0.5.3] - 2025-08-29
 
