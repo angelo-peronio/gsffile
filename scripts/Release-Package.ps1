@@ -1,15 +1,29 @@
-# Tag a release and push to remotes/origin.
-# A GitHub action will then build, test, release on PyPi.
+#Requires -Version 7.4
+<#
+    .SYNOPSIS
+    Bump version, tag a release and push to origin.
 
-# Known bug:
-# will fail if encounters a git tag different form a version tag "v[major].[minor].[patch]".
+    .DESCRIPTION
+    Bump the project version, tag a release and push to remotes/origin.
+    A CI pipeline will then build, test, and release.
+
+    .EXAMPLE
+    PS> .\scripts\Release-Package.ps1 -Bump patch
+
+    .NOTES
+    Requires [bump-my-version](https://github.com/callowayproject/bump-my-version)
+#>
 
 Param (
-    [Parameter(Mandatory, HelpMessage = "Please provide a version, in the form [major].[minor].[patch].")]
-    [Version]$Version
+    [Parameter(Mandatory, HelpMessage = "What version component to bump.")]
+    [ValidateSet("major", "minor", "patch")]
+    [string]$VersionComponent
 )
 
+$PSNativeCommandUseErrorActionPreference = $true
 $ErrorActionPreference = "Stop"
+
+git fetch --all --tags
 
 $CurrentBranch = git branch --show-current
 if ($CurrentBranch -ne "master") {
@@ -24,27 +38,10 @@ if (-Not $UpToDate) {
     throw "Local repository is not up-to-date. Run git pull. Quitting."
 }
 
-# https://stackoverflow.com/a/5737794
-$Dirty = git status --porcelain
-if ($Dirty) {
-    throw "Release invoked, but the working copy is dirty.`n" `
-        + "You probably want to commit your work. Quitting."
-}
+$ProjectRootFolder = (Get-Item $PSScriptRoot).Parent.FullName
+$ProjectName = Split-Path $ProjectRootFolder -Leaf
+&"C:\venvs\$ProjectName\Scripts\activate.ps1"
+bump-my-version bump $VersionComponent --verbose
+deactivate
 
-$Patch = $Version.Revision
-if ($Patch -ne -1) {
-    throw "Supplied version $Version is not in the form [major].[minor].[patch]. Quitting."
-}
-
-# https://stackoverflow.com/a/7261049
-git fetch --tags
-$PreviousVersionTag = git describe --tags --abbrev=0
-$PreviousVersion = [Version]$PreviousVersionTag.Substring(1)
-
-if ($PreviousVersion -ge $Version) {
-    throw "Existing version $PreviousVersion is greter or equal than supplied version $Version."
-}
-
-$VersionTag = "v$Version"
-git tag --annotate --message "Version $Version" $VersionTag
 git push --follow-tags

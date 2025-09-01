@@ -39,6 +39,7 @@ dependencies = ["numpy >= 1.24"]
 [dependency-groups]
 dev = [
     "build",
+    "bump-my-version",
     "cffconvert",
     "mypy",
     "pre-commit",
@@ -100,3 +101,34 @@ files = ["src", "tests", "noxfile.py"]
 strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+
+[tool.bumpversion]
+tag = true
+tag_name = "v{new_version}"
+tag_message = "Version v{new_version}"
+commit = true
+
+[[tool.bumpversion.files]]
+filename = "CITATION.cff"
+search = 'version: {current_version}'
+replace = 'version: {new_version}'
+
+[[tool.bumpversion.files]]
+filename = "CITATION.cff"
+search = 'date-released: "\d{{4}}-\d{{2}}-\d{{2}}"'
+replace = 'date-released: "{utcnow:%Y-%m-%d}"'
+regex = true
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search = '## [Unreleased]'
+replace = '''
+## [Unreleased]
+
+## [{new_version}] - {utcnow:%Y-%m-%d}
+
+[PyPI](https://pypi.org/project/gsffile/{new_version}/)
+ · [conda-forge](https://anaconda.org/conda-forge/gsffile)
+ · [GitHub release](https://github.com/angelo-peronio/gsffile/releases/tag/v{new_version})
+ · [source](https://github.com/angelo-peronio/gsffile/tree/v{new_version})
+'''
