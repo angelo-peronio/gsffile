@@ -27,5 +27,5 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.16998022
     description: The concept DOI representing all the versions of this work.
-version: 0.5.3
-date-released: "2025-08-29"
+version: 0.5.4
+date-released: "2025-09-01"
