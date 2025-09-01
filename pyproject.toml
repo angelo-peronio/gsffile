@@ -39,6 +39,7 @@ dependencies = ["numpy >= 1.24"]
 [dependency-groups]
 dev = [
     "build",
+    "cffconvert",
     "mypy",
     "pre-commit",
     "pre-commit-uv",
