@@ -66,7 +66,8 @@ python -c "import gsffile; help(gsffile)"
 
 ## How to cite
 
-Cite `gsffile` in your published work using the version-specific metadata in [`CITATION.cff`](CITATION.cff), or this general BibTeX entry:
+Cite `gsffile` in your published work using the version-specific metadata
+in [`CITATION.cff`](CITATION.cff), or this general BibTeX entry:
 
 ```bibtex
 @misc{Dri_gsffile_2024,
@@ -80,5 +81,6 @@ month = {7}
 
 ```
 
-Specific DOIs for each released version are listed on [Zenodo](https://doi.org/10.5281/zenodo.16998022), but are not included in `CITATION.cff`
-due to a [limitation](https://github.com/zenodo/zenodo-rdm/issues/831) of Zenodo itself.
+Specific DOIs for each released version are listed on [Zenodo](https://doi.org/10.5281/zenodo.16998022),
+but are not included in `CITATION.cff` due to a [limitation](https://github.com/zenodo/zenodo-rdm/issues/831)
+of Zenodo itself.
