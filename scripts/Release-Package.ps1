@@ -17,7 +17,7 @@
 Param (
     [Parameter(Mandatory, HelpMessage = "What version component to bump.")]
     [ValidateSet("major", "minor", "patch")]
-    [string]$VersionComponent
+    [string]$Bump
 )
 
 $PSNativeCommandUseErrorActionPreference = $true
@@ -41,7 +41,7 @@ if (-Not $UpToDate) {
 $ProjectRootFolder = (Get-Item $PSScriptRoot).Parent.FullName
 $ProjectName = Split-Path $ProjectRootFolder -Leaf
 &"C:\venvs\$ProjectName\Scripts\activate.ps1"
-bump-my-version bump $VersionComponent --verbose
+bump-my-version bump $Bump --verbose
 deactivate
 
 git push --follow-tags
