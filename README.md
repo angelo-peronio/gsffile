@@ -66,7 +66,7 @@ python -c "import gsffile; help(gsffile)"
 
 ## How to cite
 
-Cite `gsffile` in your published work using the version-specific metadata
+Cite `gsffile` in your published work using the metadata
 in [`CITATION.cff`](CITATION.cff), or this general BibTeX entry:
 
 ```bibtex

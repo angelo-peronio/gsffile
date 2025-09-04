@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: gsffile
-message: If you use this software, please cite it using the metadata from this file.
+message: If you use this software, please cite it using the metadata in CITATION.cff.
 type: software
 authors:
   - given-names: Carlo
@@ -27,5 +27,7 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.16998022
     description: The concept DOI representing all the versions of this work.
+# Specific DOIs for each released version are listed on Zenodo:
+# https://doi.org/10.5281/zenodo.16998022
 version: 0.5.4
 date-released: "2025-09-01"
