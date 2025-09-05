@@ -4,8 +4,8 @@
     Install pre-commit.
 #>
 
-$PSNativeCommandUseErrorActionPreference = $true
 $ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 $ProjectRootFolder = (Get-Item $PSScriptRoot).Parent.Parent.FullName
 $ProjectName = Split-Path $ProjectRootFolder -Leaf

@@ -7,8 +7,8 @@
     Requires uv <https://docs.astral.sh/uv/>.
 #>
 
-$PSNativeCommandUseErrorActionPreference = $true
 $ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 $ProjectRootFolder = (Get-Item $PSScriptRoot).Parent.FullName
 

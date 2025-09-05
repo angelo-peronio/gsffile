@@ -4,8 +4,8 @@
     Bootstrap a development environment.
 #>
 
-$PSNativeCommandUseErrorActionPreference = $true
 $ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 &"$PSScriptRoot\utils\New-PythonVenv.ps1"
 &"$PSScriptRoot\utils\Install-PreCommit.ps1"

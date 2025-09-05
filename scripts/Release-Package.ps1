@@ -20,8 +20,8 @@ Param (
     [string]$Bump
 )
 
-$PSNativeCommandUseErrorActionPreference = $true
 $ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 git fetch --all --tags
 
