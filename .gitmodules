@@ -1,0 +1,3 @@
+[submodule "submodules/scripts"]
+	path = submodules/scripts
+	url = https://github.com/angelo-peronio/scripts.git
