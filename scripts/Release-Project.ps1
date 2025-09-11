@@ -41,8 +41,8 @@ if (-Not $UpToDate) {
     throw "Local repository is not up-to-date. Run git pull. Quitting."
 }
 
-$DryRunOption = ($DryRun) ? "--dry-run" : ""
-uv run $(Get-UvRunOptions) bump-my-version bump $Bump --verbose $DryRunOption
+$DryRunOption = ($DryRun) ? "--dry-run" : $null
+uv run $(Get-UvRunOptions) bump-my-version bump $Bump $DryRunOption --verbose
 
 if (-not ($DryRun)) {
     git push --follow-tags

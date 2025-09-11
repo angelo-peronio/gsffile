@@ -2,10 +2,10 @@
 
 ## How to release
 
-Use `scripts\Release-Package.ps1`:
+Use `scripts\Release-Project.ps1`:
 
 ```powershell
-.\scripts\Release-Package.ps1 -Bump patch
+.\scripts\Release-Project.ps1 -Bump patch
 ```
 
 ## Possibilities
