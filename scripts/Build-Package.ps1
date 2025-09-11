@@ -12,13 +12,17 @@ $PSNativeCommandUseErrorActionPreference = $true
 Import-Module -Name "$PSScriptRoot\Utils.psm1"
 
 Get-ProjectRootFolder | Push-Location
+
 # Remove previous build artifacts.
 if (Test-Path dist) { Remove-Item -Recurse -Force dist }
-# Build
+
+# Build.
 uv build
+
 # Expand sdist and wheel.
 Push-Location dist
 Get-Item *.tar.gz | ForEach-Object { tar -xvzf $_ }
 Get-Item *.whl | Expand-Archive -Verbose
+
 Pop-Location
 Pop-Location

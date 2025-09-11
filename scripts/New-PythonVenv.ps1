@@ -21,7 +21,12 @@ Import-Module -Name "$PSScriptRoot\Utils.psm1"
 
 "Project root folder: $(Get-ProjectRootFolder)" | Write-Host
 
+$UvRunOptions = Get-UvRunOptions
 # As of uv 0.8.15, `uv sync` does not support an `--env-file` option like `uv run` does,
 # so we run `uv sync` through `uv run`.
 # Trick from https://github.com/astral-sh/uv/issues/8862#issuecomment-2474164670
-uv run $(Get-UvRunOptions) uv sync --upgrade
+uv run $UvRunOptions uv sync --upgrade
+
+$PythonVersion = uv run $UvRunOptions python --version
+$PythonPath = uv run $UvRunOptions python -c "import sys; print(sys.executable)"
+"$PythonVersion at $PythonPath" | Write-Host
