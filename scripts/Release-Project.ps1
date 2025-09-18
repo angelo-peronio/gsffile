@@ -18,7 +18,10 @@ Param (
     [Parameter(Mandatory, HelpMessage = "What version component to bump.")]
     [ValidateSet("major", "minor", "patch")]
     [string]$Bump,
-    [switch]$DryRun
+    # Show what would be done, but do not do it.
+    [switch]$DryRun,
+    # Do not abort if the working direcotry is dirty. Useful in CI, to allow changes in uv.lock.
+    [switch]$AllowDirty
 )
 
 #Requires -Version 7.4
@@ -42,7 +45,8 @@ if (-Not $UpToDate) {
 }
 
 $DryRunOption = ($DryRun) ? "--dry-run" : $null
-uv run $(Get-UvRunOptions) bump-my-version bump $Bump $DryRunOption --verbose
+$AllowDirtyOption = ($AllowDirty) ? "--allow-dirty" : $null
+uv run $(Get-UvRunOptions) bump-my-version bump $Bump $DryRunOption $AllowDirtyOption --verbose
 
 if (-not ($DryRun)) {
     git push --follow-tags
