@@ -121,12 +121,12 @@ regex = true
 [[tool.bumpversion.files]]
 filename = "CHANGELOG.md"
 search = '''
-## [Unreleased]
+## Unreleased
 '''
 replace = '''
-## [Unreleased]
+## Unreleased
 
-## [{new_version}] - {utcnow:%Y-%m-%d}
+## gsffile {new_version} - {utcnow:%Y-%m-%d}
 
 [PyPI](https://pypi.org/project/gsffile/{new_version}/)
  · [conda-forge](https://anaconda.org/conda-forge/gsffile)
