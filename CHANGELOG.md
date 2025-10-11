@@ -4,7 +4,7 @@
 
 ### Enhancements
 
-* Updated embedded [scripts](https://github.com/angelo-peronio/scripts) to v1.1.1
+* Updated embedded [scripts](https://github.com/angelo-peronio/scripts) to v0.1.1
 
 ## gsffile 0.5.4 - 2025-09-01
 
