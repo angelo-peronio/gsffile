@@ -69,7 +69,12 @@ function Get-UvRunOptions {
     #>
 
     $EnvFilePath = Get-EnvFilePath
-    $EnvFileOption = (Test-Path $EnvFilePath -PathType Leaf) ? "--env-file=$EnvFilePath" : $null
+    # uv implements custom escaping for the --env-file option, so
+    # we need to use / as path separator, and escape the whitespaces with \
+    # https://github.com/astral-sh/uv/issues/15806
+    # https://github.com/astral-sh/uv/pull/15815
+    $EnvFilePathEscaped = $EnvFilePath.Replace("\", "/").Replace(" ", "\ ")
+    $EnvFileOption = (Test-Path $EnvFilePath -PathType Leaf) ? "--env-file=$EnvFilePathEscaped" : $null
     @(
         "--directory=$(Get-ProjectRootFolder)",
         $EnvFileOption,

@@ -1,27 +1,27 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## Unreleased
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+### Enhancements
 
-## [Unreleased]
+* Updated embedded [scripts](https://github.com/angelo-peronio/scripts) to v1.1.1
 
-## [0.5.4] - 2025-09-01
+## gsffile 0.5.4 - 2025-09-01
 
 [PyPI](https://pypi.org/project/gsffile/0.5.4/)
  · [conda-forge](https://anaconda.org/conda-forge/gsffile)
  · [GitHub release](https://github.com/angelo-peronio/gsffile/releases/tag/v0.5.4)
  · [source](https://github.com/angelo-peronio/gsffile/tree/v0.5.4)
 
-### Added
+### Enhancements
 
 * Pre-commit hook to check `CITATION.cff`.
 * Automated version bumping of `CITATION.cff` and `CHANGELOG.md`.
 * Include `CITATION.cff` and `CHANGELOG.md` in source distribution.
 * Link changelog to GitHub release notes.
 
-## [0.5.3] - 2025-08-29
+## gsffile 0.5.3 - 2025-08-29
 
-### Added
+### Enhancements
 
 * [Zenodo DOI](https://doi.org/10.5281/zenodo.16998022)
