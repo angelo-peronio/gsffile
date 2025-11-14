@@ -1,8 +1,6 @@
 """Nox configuration."""
 
 import re
-from pathlib import Path
-from tempfile import gettempdir
 from typing import Any
 
 import nox
@@ -10,7 +8,6 @@ from nox.sessions import Session
 
 nox.needs_version = ">=2024.3.2"
 nox.options.default_venv_backend = "uv"
-nox.options.envdir = str(Path(gettempdir()) / "nox")
 nox.options.error_on_missing_interpreters = True
 nox.options.error_on_external_run = True
 
@@ -58,7 +55,7 @@ def test_oldest_deps(session: Session) -> None:
     session.run("pytest")
 
 
-@nox.session()
+@nox.session(python=python_versions[-1])  # Use the latest supported Python version.
 def coverage(session: Session) -> None:
     """Generate test coverage report."""
     # We generate XML because Codecov would convert it to XML anyway.
