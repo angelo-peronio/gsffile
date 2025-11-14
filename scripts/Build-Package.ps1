@@ -13,11 +13,8 @@ Import-Module -Name "$PSScriptRoot\Utils.psm1"
 
 Get-ProjectRootFolder | Push-Location
 
-# Remove previous build artifacts.
-if (Test-Path dist) { Remove-Item -Recurse -Force dist }
-
 # Build.
-uv build
+uv build --clear
 
 # Expand sdist and wheel.
 Push-Location dist
