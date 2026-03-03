@@ -56,9 +56,7 @@ def test_XRes_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:  # noqa: N8
         write_gsf(tmp_path / "test.gsf", data, meta)
 
 
-@pytest.mark.parametrize(
-    "meta", [{"key=key": "value"}, {"key": "="}], ids=lambda meta: str(meta)
-)
+@pytest.mark.parametrize("meta", [{"key=key": "value"}, {"key": "="}], ids=str)
 def test_equal_sign_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:
     """Test equal sign in meta --> ☠️."""
     data = np.zeros((3, 2), dtype=np.float32)
@@ -69,7 +67,7 @@ def test_equal_sign_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:
 @pytest.mark.parametrize(
     "meta",
     [{"key\x00key": "value"}, {"key": "value\x00value"}],
-    ids=lambda meta: str(meta),
+    ids=str,
 )
 def test_null_char_in_meta(tmp_path: Path, meta: dict[Any, Any]) -> None:
     """Test equal sign in meta --> ☠️."""
