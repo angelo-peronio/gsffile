@@ -4,7 +4,10 @@
 
 ### Enhancements
 
-* Updated embedded [scripts](https://github.com/angelo-peronio/scripts) to v0.1.1
+* Updated embedded [scripts](https://github.com/angelo-peronio/scripts) to v0.1.3
+* Use [`prek`](https://prek.j178.dev/)
+* Use standard location for Nox Python environments
+* Specify a supported Python version for coverage Nox session
 
 ## gsffile 0.5.4 - 2025-09-01
 
