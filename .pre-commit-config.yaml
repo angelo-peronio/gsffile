@@ -44,6 +44,9 @@ repos:
         additional_dependencies: [nox, numpy, pytest]
 
   - repo: https://github.com/citation-file-format/cffconvert
-    rev: b6045d78aac9e02b039703b030588d54d53262ac # The pre-commit hook has not been released yet.
+    # As of 2026-03-06, the latest release tag is 2.0.0.
+    # It does not include the pre-commit hook, causing `pre-commit autoupdate` to fail.
+    # https://github.com/citation-file-format/cffconvert/issues/389#issuecomment-2480672136
+    rev: b6045d78aac9e02b039703b030588d54d53262ac
     hooks:
       - id: validate-cff
