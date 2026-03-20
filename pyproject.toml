@@ -46,7 +46,7 @@ dev = [
     "ruff",
     { include-group = "test" },
 ]
-test = ["pytest", "pytest-cov"]
+test = ["pytest >= 9", "pytest-cov"]
 
 [project.urls]
 Repository = "https://github.com/angelo-peronio/gsffile"
@@ -70,19 +70,13 @@ tag_regex = '^(?P<version>v?\d+\.\d+\.\d+)$'
 # https://github.com/ofek/hatch-vcs/discussions/12
 local_scheme = "no-local-version"
 
-[tool.pytest.ini_options]
-addopts = [
-    "-ra",
-    "--doctest-glob=README.md",
-    "--import-mode=importlib",
-    "--strict-config",
-    "--strict-markers",
-]
+[tool.pytest]
+addopts = ["-ra", "--doctest-glob=README.md", "--showlocals"]
 filterwarnings = ["error"]
-log_cli_level = "DEBUG"
-minversion = "7"
+log_level = "DEBUG"
+minversion = "9"
 testpaths = ["README.md", "tests"]
-xfail_strict = true
+strict = true
 
 [tool.ruff.lint]
 extend-select = ["ALL"]
