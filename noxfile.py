@@ -52,3 +52,7 @@ def coverage(session: Session) -> None:
     # Coverage analysis slows down the testing, so we do it only once.
     session.install("--group=test", ".")
     session.run("pytest", "--cov=gsffile", "--cov-report=xml")
+
+
+if __name__ == "__main__":
+    nox.main()
