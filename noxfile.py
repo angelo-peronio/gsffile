@@ -11,6 +11,14 @@ from nox.project import python_versions as get_python_versions
 from nox.sessions import Session
 from packaging.version import Version
 
+# Keep nox.needs_version in sync with:
+# * pyproject.toml,
+# * the inline metadata above.
+nox.needs_version = ">= 2025.2.9"
+nox.options.default_venv_backend = "uv"
+nox.options.error_on_missing_interpreters = True
+nox.options.error_on_external_run = True
+
 pyproject = load_pyproject_toml()
 # Waiting for nox to take care of sorting.
 # https://github.com/wntrblm/nox/issues/1074
