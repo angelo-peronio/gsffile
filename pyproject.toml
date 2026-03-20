@@ -42,11 +42,10 @@ dev = [
     "cffconvert",
     "mypy",
     "prek",
-    "nox",
     "ruff",
     { include-group = "test" },
 ]
-test = ["pytest >= 9", "pytest-cov"]
+test = ["nox >= 2025.2.9", "packaging", "pytest > 9", "pytest-cov"]
 
 [project.urls]
 Repository = "https://github.com/angelo-peronio/gsffile"

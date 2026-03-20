@@ -1,38 +1,20 @@
+#!/usr/bin/env -S uv run --script
+
+# /// script
+# dependencies = ["nox >= 2025.2.9", "packaging"]
+# ///
 """Nox configuration."""
 
-import re
-from typing import Any
-
 import nox
+from nox.project import load_toml as load_pyproject_toml
+from nox.project import python_versions as get_python_versions
 from nox.sessions import Session
+from packaging.version import Version
 
-nox.needs_version = ">=2024.3.2"
-nox.options.default_venv_backend = "uv"
-nox.options.error_on_missing_interpreters = True
-nox.options.error_on_external_run = True
-
-
-def version_tuple(version: str) -> tuple[int, ...]:
-    """'1.24' --> (1, 24)."""
-    return tuple(int(s) for s in version.split("."))
-
-
-def get_python_versions(pyproject: dict[str, Any]) -> list[str]:
-    """Extract a sorted list of supported Python versions from the Trove classifiers."""
-    classifiers = pyproject["project"]["classifiers"]
-    match_classifier = re.compile(
-        r"Programming Language :: Python :: (?P<version>\d+\.\d+)"
-    ).fullmatch
-    python_versions = [
-        m.group("version")
-        for classifier in classifiers
-        if (m := match_classifier(classifier))
-    ]
-    return sorted(python_versions, key=version_tuple)
-
-
-pyproject = nox.project.load_toml("pyproject.toml")
-python_versions = get_python_versions(pyproject)
+pyproject = load_pyproject_toml()
+# Waiting for nox to take care of sorting.
+# https://github.com/wntrblm/nox/issues/1074
+python_versions = sorted(get_python_versions(pyproject), key=Version)
 # Only upgrade the PyPy version after NumPy publishes binary wheels
 # for the new one, otherwise the CI would take too long.
 more_python_versions = ["pypy3.11", "3.13t", "3.14t"]
