@@ -29,7 +29,7 @@ python -m pip install gsffile
 or with `conda`
 
 ```bash
-conda install gsffile
+conda install conda-forge::gsffile
 ```
 
 ## Quickstart
