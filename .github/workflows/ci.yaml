@@ -54,6 +54,8 @@ jobs:
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v10.0.1
+        with:
+          enable-cache: false
 
       - name: Test package
         run: uvx nox@latest --verbose
@@ -129,14 +131,14 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
           gh release create
-          ${{ github.ref_name }}
+          ${GITHUB_REF_NAME}
           --repo ${{ github.repository }}
-          --notes "[Changelog](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md)"
+          --notes "[Changelog](https://github.com/${{ github.repository }}/blob/${GITHUB_REF_NAME}/CHANGELOG.md)"
 
       - name: Upload artifacts to GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
           gh release upload
-          ${{ github.ref_name }} dist/**
+          ${GITHUB_REF_NAME} dist/**
           --repo ${{ github.repository }}
