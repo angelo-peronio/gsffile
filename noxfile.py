@@ -20,9 +20,11 @@ nox.options.error_on_external_run = True
 
 pyproject = load_pyproject_toml()
 python_versions = get_python_versions(pyproject, sort=True)
-# Only upgrade the PyPy version after NumPy publishes binary wheels
-# for the new one, otherwise the CI would take too long.
-more_python_versions = ["pypy3.11", "3.14t", "3.15t"]
+# 2026-10-13 Do not test on PyPy, since NumPy >= 2.5 does not publish binary wheels
+# for it anymore, see https://github.com/numpy/numpy/issues/30416
+# These will be probably published again in the future, see
+# https://github.com/numpy/numpy/pull/32332
+more_python_versions = ["3.14t", "3.15t"]
 oldest_deps = [
     spec.replace(">=", "==") for spec in pyproject["project"]["dependencies"]
 ]
