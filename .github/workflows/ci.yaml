@@ -58,7 +58,7 @@ jobs:
           enable-cache: false
 
       - name: Test package
-        run: uvx nox@latest --verbose
+        run: uv run just nox --verbose
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v7
