@@ -36,8 +36,8 @@ build:
 test:
     uv run pytest
 
-nox:
-    uv run nox
+nox args="":
+    uv run nox {{args}}
 
 hooks:
     uv run prek run --all-files
