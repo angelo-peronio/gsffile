@@ -16,6 +16,7 @@ venv:
 [group("bootstrap")]
 hooks-install:
     uv run prek install --install-hooks --overwrite
+
 [group("upgrade")]
 upgrade: python-upgrade hooks-upgrade
 
@@ -36,7 +37,7 @@ build:
 test:
     uv run pytest
 
-nox args="":
+nox *args:
     uv run nox {{args}}
 
 hooks:
