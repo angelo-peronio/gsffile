@@ -40,9 +40,11 @@ dependencies = ["numpy >= 1.24"]
 dev = [
     "bump-my-version",
     "cffconvert",
+    "just-lsp",
     "mypy",
     "prek",
     "ruff",
+    "rust-just",
     "zizmor",
     { include-group = "test" },
 ]

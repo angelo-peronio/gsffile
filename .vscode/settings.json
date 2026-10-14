@@ -19,4 +19,8 @@
     ],
     "git.followTagsWhenSync": true,
     "python.analysis.typeCheckingMode": "off",
+    // Simplified from https://github.com/nefrob/vscode-just/issues/111
+    // works only on Windows.
+    "vscode-just.justPath": ".venv/Scripts/just.exe",
+    "vscode-just.lspPath": ".venv/Scripts/just-lsp.exe",
 }
