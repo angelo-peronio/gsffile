@@ -1,0 +1,52 @@
+name: check
+
+permissions: {} # No default permissions.
+
+on:
+  workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+        description: Token for uploading coverage reports to Codecov.
+        required: false
+
+jobs:
+  build:
+    name: Build and verify package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Build and inspect Python package
+        uses: hynek/build-and-inspect-python-package@v3.0.1
+        id: baipp
+
+  test:
+    name: Test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: false
+
+      - name: Audit dependencies
+        run: uv audit
+
+      - name: Test package
+        run: uv run just nox --verbose
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
