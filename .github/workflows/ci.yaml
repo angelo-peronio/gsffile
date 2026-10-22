@@ -9,6 +9,9 @@ name: ci
 
 permissions: {} # No default permissions.
 
+env:
+  FORCE_COLOR: "1" # Pretty output
+
 on:
   push:
     branches:
