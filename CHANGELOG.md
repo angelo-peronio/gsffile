@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## gsffile 0.5.5 - 2026-10-22
+
+[PyPI](https://pypi.org/project/gsffile/0.5.5/)
+ · [conda-forge](https://anaconda.org/conda-forge/gsffile)
+ · [GitHub release](https://github.com/angelo-peronio/gsffile/releases/tag/v0.5.5)
+ · [source](https://github.com/angelo-peronio/gsffile/tree/v0.5.5)
+
 ### Enhancements
 
 * Use [`just`](https://just.systems/)
