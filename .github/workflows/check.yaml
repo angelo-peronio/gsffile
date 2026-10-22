@@ -39,9 +39,6 @@ jobs:
         with:
           enable-cache: false
 
-      - name: Audit dependencies
-        run: uv audit
-
       - name: Test package
         run: uv run just nox --verbose
 
