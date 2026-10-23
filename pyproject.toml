@@ -1,67 +1,66 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [ "hatch-vcs", "hatchling>=1.26" ]
+
 [project]
 name = "gsffile"
 description = "Read and write Gwyddion Simple Field files"
-authors = [{ name = "Carlo Dri" }, { name = "Angelo Peronio" }]
-license = "MIT"
-keywords = ["Gwyddion", "Gwyddion Simple Field", "gsf"]
-dynamic = ["version"]
 readme = "README.md"
-# Test will run against the Python versions listed in the Trove classifiers.
-# Support the next release-candidate Python version only after NumPy has published
-# binary wheels for it, otherwise the CI would take too long.
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Intended Audience :: Science/Research",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Programming Language :: Python :: 3.15",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Topic :: File Formats",
-    "Topic :: Scientific/Engineering :: Image Processing",
-    "Typing :: Typed",
-]
+keywords = [ "gsf", "Gwyddion", "Gwyddion Simple Field" ]
+license = "MIT"
+authors = [ { name = "Carlo Dri" }, { name = "Angelo Peronio" } ]
 # Status of Python versions
 # <https://devguide.python.org/versions/>
 # Scientific Python recommendation on Python and NumPy versions to support.
 # <https://scientific-python.org/specs/spec-0000/>
-requires-python = ">= 3.10"
+requires-python = ">=3.10"
+# Test will run against the Python versions listed in the Trove classifiers.
+# Support the next release-candidate Python version only after NumPy has published
+# binary wheels for it, otherwise the CI would take too long.
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: File Formats",
+  "Topic :: Scientific/Engineering :: Image Processing",
+  "Typing :: Typed",
+]
+dynamic = [ "version" ]
 # Before attempting stunts here, consider the fragile logic
 # for oldest_deps in noxfile.py.
-dependencies = ["numpy >= 1.24"]
+dependencies = [ "numpy>=1.24" ]
+urls."GSF format" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
+urls.Issues = "https://github.com/angelo-peronio/gsffile/issues"
+urls.Repository = "https://github.com/angelo-peronio/gsffile"
 
 [dependency-groups]
 dev = [
-    "bump-my-version",
-    "cffconvert",
-    "just-lsp",
-    "mypy",
-    "prek",
-    "ruff",
-    "rust-just",
-    "zizmor",
-    { include-group = "test" },
+  "bump-my-version",
+  "cffconvert",
+  "just-lsp",
+  "mypy",
+  "prek",
+  "pyproject-fmt",
+  "ruff",
+  "rust-just",
+  "zizmor",
+  { include-group = "test" },
 ]
-test = ["nox >= 2026.08.10", "pytest > 9", "pytest-cov"]
-
-[project.urls]
-Repository = "https://github.com/angelo-peronio/gsffile"
-Issues = "https://github.com/angelo-peronio/gsffile/issues"
-"GSF format" = "http://gwyddion.net/documentation/user-guide-en/gsf.html"
-
-[build-system]
-requires = ["hatchling >= 1.26", "hatch-vcs"]
-build-backend = "hatchling.build"
+test = [ "nox>=2026.8.10", "pytest>9", "pytest-cov" ]
 
 [tool.hatch]
-build.targets.sdist.exclude = ["/.**", "/scripts", "development.md", "uv.lock"]
 version.source = "vcs"
+build.targets.sdist.exclude = [ "/.**", "/scripts", "development.md", "uv.lock" ]
 
 [tool.hatch.version.raw-options]
 # Version tag pattern: v[major].[minor].[patch]
@@ -72,30 +71,30 @@ tag_regex = '^(?P<version>v?\d+\.\d+\.\d+)$'
 # https://github.com/ofek/hatch-vcs/discussions/12
 local_scheme = "no-local-version"
 
-[tool.pytest]
-addopts = ["-ra", "--doctest-glob=README.md", "--showlocals"]
-filterwarnings = ["error"]
-log_level = "DEBUG"
-minversion = "9"
-testpaths = ["README.md", "tests"]
-strict = true
-
-[tool.ruff.lint]
-extend-select = ["ALL"]
-ignore = [
-    "COM812", # Trailing comma missing
-    "CPY001", # Missing copyright notice
+[tool.ruff]
+lint.extend-select = [ "ALL" ]
+lint.ignore = [
+  "COM812", # Trailing comma missing
+  "CPY001", # Missing copyright notice
 ]
-extend-per-file-ignores."tests/*.py" = [
-    "S101", # Assert used
+lint.extend-per-file-ignores."tests/*.py" = [
+  "S101", # Assert used
 ]
-pydocstyle.convention = "numpy"
+lint.pydocstyle.convention = "numpy"
 
 [tool.mypy]
-files = ["src", "tests", "noxfile.py"]
-strict = true
+files = [ "noxfile.py", "src", "tests" ]
 warn_unreachable = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
+strict = true
+
+[tool.pytest]
+addopts = [ "-ra", "--doctest-glob=README.md", "--showlocals" ]
+filterwarnings = [ "error" ]
+log_level = "DEBUG"
+minversion = "9"
+strict = true
+testpaths = [ "README.md", "tests" ]
 
 [tool.bumpversion]
 tag = true
@@ -105,8 +104,8 @@ commit = true
 
 [[tool.bumpversion.files]]
 filename = "CITATION.cff"
-search = 'version: {current_version}'
-replace = 'version: {new_version}'
+search = "version: {current_version}"
+replace = "version: {new_version}"
 
 [[tool.bumpversion.files]]
 filename = "CITATION.cff"
