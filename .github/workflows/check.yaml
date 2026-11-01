@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
 
       - name: Build and inspect Python package
-        uses: hynek/build-and-inspect-python-package@v3.0.1
+        uses: hynek/build-and-inspect-python-package@v3.0.2
         id: baipp
 
   test:
@@ -35,7 +35,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v10.2.0
+        uses: astral-sh/setup-uv@v10.3.2
         with:
           enable-cache: false
 
