@@ -141,7 +141,7 @@ wheels = [
 
 [[package]]
 name = "bump-my-version"
-version = "1.6.3"
+version = "1.6.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -157,9 +157,9 @@ dependencies = [
     { name = "wcmatch", version = "11.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "wcmatch", version = "11.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/30/4a/c8d1330dd23349ee3f1a0f0ae2fb9ffb8f8e8e3f1a6cfc8511edcced2b12/bump_my_version-1.6.3.tar.gz", hash = "sha256:a886d5b8a86b439bb1119eecc3625a940c545e8e7b093ae5fd52a754c904c165", size = 1129141, upload-time = "2026-10-18T17:50:58.538Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2b/df/ff4a0fc20547b4bf30b91fb6300cf0bd91d40a33dbb3cdb9cc698d0e71c0/bump_my_version-1.6.6.tar.gz", hash = "sha256:3f0a140b2a275dc030b2adc4dacb86247101ede38a5032d9fc9f291a17cfeb9d", size = 1161185, upload-time = "2026-10-25T13:45:13.457Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/68/53/2b79c2317d2a41231597b8ae7da3c44eaa06b9fff79e51f9104b8ef82839/bump_my_version-1.6.3-py3-none-any.whl", hash = "sha256:48d4a302e49a507f3b71e0532a317121f58815ed446ad36b52fb2589c134f548", size = 67139, upload-time = "2026-10-18T17:50:56.65Z" },
+    { url = "https://files.pythonhosted.org/packages/19/21/01f6f456e466363ef970a69885403bba3337c5a442bc4a7f52d2f5a26dcd/bump_my_version-1.6.6-py3-none-any.whl", hash = "sha256:99c16933a7ca5c7ebeb622ab6bf5a964ad0bda40c8e5f62311b27d9414edf123", size = 68031, upload-time = "2026-10-25T13:45:11.376Z" },
 ]
 
 [[package]]
